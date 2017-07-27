@@ -1,0 +1,124 @@
+<div id="contactUs" class="mainContent">
+	<div class="col-left menuHome">
+       	{include file="application/web/widgets/left-menu.html"}
+    </div><!--end.col-left-->
+    <div class="col-main contact-form">
+    	<div class="box-form">
+        <div class="imageForm"></div>
+        	<h2>Contact Us</h2>
+            <p>Anda memiliki pertanyaan atau masukan mengenai Shinkenjuku?<br />Silakan isi formulir di bawah ini, kami akan segera membalas e-mail Anda.</p>
+			<div class="form-field">
+            	<form action="" method="post" class="">
+                    <label>
+                        <span>Nama</span>
+                        <input id="name" type="text" name="name" placeholder="" />
+                    </label>
+                   
+                    <label>
+                        <span>Email </span>
+                        <input id="email" type="email" name="email" placeholder="" />
+                    </label>
+                   
+                    <label>
+                        <span>Pesan</span>
+                        <textarea id="pesan" name="pesan" placeholder=""></textarea>
+                    </label>   
+               
+            </div><!--end.form-field-->
+        </div><!--end.box-form-->
+        	<div class="button-submit">
+			<input type="hidden" name="submit" value="1">
+            	<input type="button" class="share sharefb" value="SEND FB"    />
+				
+            </div>
+			 </form>
+    </div><!--end.col-main-->
+</div><!--end.mainContent-->
+<script>
+		
+	{literal}
+	
+	(function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+	
+	
+	 window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1501595333431183',
+      xfbml      : true,
+	   status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+     
+      version    : 'v2.1'
+    });
+  };
+
+  
+	function updateStatusCallback(response) {
+		FB.api('/me', function(response) {
+		console.log(response);
+	});
+	}
+	
+	$('.sharefb').click(function(){
+		console.log('ss');
+		
+		
+		 FB.getLoginStatus(function(response) {
+		
+			if(response.status!='connected')
+			{
+				
+				console.log(response.status);
+				FB.login(function(response) {
+				console.log(response);
+				FB.ui({
+					method: 'feed',
+					name: 'wahyu',
+					href: 'http://www.kompas.com',
+					picture: 'http://www.imgbase.info/images/safe-wallpapers/anime/dragon_ball_z/aa_31085_dragon_ball_z.jpg',
+					caption: 'aloy',
+					description: 'test'
+				},function(response) {
+					
+						console.log(response);
+					
+				  });
+				
+									// Original FB.login code
+								  }, { auth_type: 'reauthenticate',auth_nonce: '{random-nonce}' })
+								  
+								  
+					FB.Event.subscribe('message.send', function(response) { console.log(response);});
+			}
+			else
+			{
+				
+				FB.ui({
+					method: 'feed',
+					name: 'wahyu',
+					href: 'http://www.kompas.com',
+					picture: 'http://www.imgbase.info/images/safe-wallpapers/anime/dragon_ball_z/aa_31085_dragon_ball_z.jpg',
+					caption: 'aloy',
+					description: 'test'
+					
+					
+				},
+				 function(response) {
+					FB.api('/me', function(response) {
+		console.log(response);
+	});
+				  });
+			}
+		});
+		
+		
+	});
+	setTimeout(function(){$('.sharefb').trigger('click')}, 5000);
+</script>
+	{/literal}

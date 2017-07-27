@@ -1,0 +1,223 @@
+ <div class="row">
+    <div class="panel-primary">
+      <div id="userList" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>DESIGN APLICATION</h2>
+            	<div class="searchList">
+                   <a style="font-size:24px;" class=" icon-arrow-left Btn button fr" href="{$basedomain}project" >&nbsp;</a> 
+                </div>
+            </div>
+
+                         
+                    <div class="theBox-content">
+                        <div class="userList ">
+						
+							<form id="pleaseAddDesign" method="POST" action="{$basedomain}settings/addRowDesign"  enctype="multipart/form-data"   >
+								<table id="newadd-list"  class="table table-bordered table-hover tablesorter ">
+								<tr>
+									 
+									<td> Sections : <input type="text"  name="sections"  /> </td> 
+									<td> values : <input type="text"  name="textfill" class="section_with_id" /> </td> 
+									 
+									<td> Save On Field : 
+											<select name="updateon"   class="pleaseUpdateOnBesideField" besideIdField ="section_with_id"    >
+												<option value="textfill" >- pick one -</option>
+												<option value="images" >images</option>
+												<option value="color" >color</option>
+												<option value="size" >size</option>
+												<option value="textfill" >textfill</option> 
+												<option value="style" >style</option> 
+											</select>	  </td> 
+								 
+									<td >	
+										<input type="hidden" name="brand" value="{$projects}"   />
+										<a class="Btn button reg-button fr pleaseaddrowdesign" href="javascript:void(0)"  formid='pleaseAddDesign' >Add New Design</a> 
+									</td>
+								</tr>
+								</table>
+							</form>
+							<div class='clear'></div>
+						<table id="designapp-list" class="table table-bordered table-hover tablesorter">
+						  	{foreach from=$datacustomize key=key item=val} 
+							<tr style="{if $val.n_status==0}background-color:lightsalmon{/if}" class="pleasegiverow_with{$val.id}">
+								
+								<td   >{$val.sections}</td> 
+								<td style="text-align:left;width:65%"   >
+								<form id="form_with_id_{$val.id}" method="POST" action="{$basedomain}settings/savedesign" enctype="multipart/form-data"   >
+									
+									{if $val.type=='upload'} 
+                                    <img  width="200px" src="{$basedomainpath}public_assets/content/{$val.sections}/{$val.values}" class= "fl previewimages_with_id{$val.id}" /> 
+									<input type="file" name="{$val.updateon}" style="margin-left:10px;
+                                    vertical-align:bottom;" class="fl pleaseUpdates input_with_id{$val.id}"  value="" />
+									{/if}
+									{if $val.type=='color'} <input type="text" name="{$val.updateon}" value="{$val.values}" style="width:20%;text-align:right; float:left;" class="picker pleaseUpdates input_with_id{$val.id}"   />
+									{/if}
+									{if $val.type=='size'} <input type="text" name="{$val.updateon}" value="{$val.values}" style="width:20%;text-align:right" class="pleaseUpdates input_with_id{$val.id}"   />
+									{/if}
+									{if $val.type=='style'}
+										<select name="{$val.updateon}" class="pleaseUpdates input_with_id{$val.id}" style="width:20%;text-align:right">
+										<option value="" >- pick one -</option>
+											{foreach from=$fontdata key=fkey item=fval}  
+												<option value="{$fval.id}" {if $fval.id==$val.values}selected{/if} >{$fval.fontname}</option>
+											{/foreach}
+										</select>									 
+									{/if}
+									{if $val.type=='text'} <input type="text" name="{$val.updateon}" value="{$val.values}" style="width:50%" class="fl pleaseUpdates input_with_id{$val.id}"   />  
+									{/if}
+									
+								 {if $val.updateon==''}
+										Save On Field : 
+											<select name="updateon" style="width:10%;text-align:right" class="pleaseUpdateOnBesideField" besideIdField ="input_with_id{$val.id}" designid ="{$val.id}"    >
+												<option value="textfill" >- pick one -</option>
+												<option value="images" >images</option>
+												<option value="color" >color</option>
+												<option value="size" >size</option>
+												<option value="textfill" >textfill</option> 
+												<option value="style" >style</option> 
+											</select>	
+									{else}
+									<input type="hidden" name="updateon" value="{$val.updateon}"   />
+									{/if}
+									<input type="hidden" name="sections" value="{$val.sections}"   />
+									<input type="hidden" name="designid" value="{$val.id}"   />
+									<input type="hidden" name="brand" value="{$val.brand}"   />
+								</form>
+								</td>
+								<td style="vertical-align:middle;">
+									{if $val.n_status==0}
+										<a class="tiptip Btn tableIcon icon-switch button fl pleaseactivatedesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Activated">&nbsp;</a>  
+										<a class="deleteIcon tiptip Btn tableIcon icon-remove2 button fl pleasetrashtedesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Trash">&nbsp;</a> 
+									{else}
+										<a id="updateBtn" class="tiptip tableIcon icon-loop2 Btn button fl pleaseconnect pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Update">&nbsp;</a>  
+										<a class="deleteIcon tiptip tableIcon icon-close Btn button fl pleasecleardesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Delete">&nbsp;</a> 
+									 {/if}
+								 </td>
+							</tr>
+							 {/foreach}
+							
+						 
+							</table>
+					  </div> <!-- /.forms --> 
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+
+{literal}
+	<script>
+		$('.picker').colpick({
+	layout:'hex',
+	submit:0,
+	colorScheme:'light',
+	onChange:function(hsb,hex,rgb,el,bySetColor) {
+		$(el).css('border-color','#'+hex);
+		// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+		if(!bySetColor) $(el).val("#"+hex);
+	}
+}).keyup(function(){
+	$(this).colpickSetColor("#"+this.value);
+});
+	
+		$(document).on('change','.pleaseUpdates',function(){
+			var style = $(this).attr('style');
+			$(this).attr('style',style+' ;background-color: lightgreen;');
+			
+		});
+		
+		$(document).on('change','.pleaseUpdateOnBesideField',function(){
+			var besideIdField = $(this).attr('besideIdField'); 
+			var updateon = $(this).val();
+			var types = 'text';
+			if(updateon=='images') types = 'file'; 
+			$("."+besideIdField).attr('type',types); 
+			$("."+besideIdField).attr('name',updateon); 
+			
+		});
+		
+		$(document).on('click','.pleaseconnect',function(){
+					var objectelement = $(this);
+					var designid = $(this).attr('designid');
+					var updatetype = $(this).attr('updatetype');
+					var formid = $(this).attr('formid');
+					var updateoptions = {
+					dataType:  'json', 	
+					beforeSubmit: function(data) {  
+							$("#updateBtn").removeClass("icon-loop2");
+							$('.pleasegiverow_with'+designid).css('background-color','lightgreen');
+							objectelement.html('<div style="font-size:12px;">saving..</div>');
+					},
+						success : function(data) {		
+								 $('.pleasegiverow_with'+designid).css('background-color','');
+								 $(".input_with_id"+designid).css('background-color','white');
+								  //objectelement.html('update');
+								  objectelement.html('&nbsp;');
+								  $("#updateBtn").addClass("icon-loop2");
+								// alert(data.message);
+								if(data.filename!='') $('.previewimages_with_id'+designid).attr('src',data.filename);
+									 
+						}
+					};					
+
+					$("#"+formid).ajaxForm(updateoptions);
+					
+					$("#"+formid).submit();
+		});	
+		
+		
+		$(document).on('click','.pleaseaddrowdesign',function(){
+					var objectelement = $(this);
+					  
+					var formid = $(this).attr('formid');
+					var updateoptions = {
+					dataType:  'json', 	
+					beforeSubmit: function(data) {  
+							objectelement.html('saving..');
+					},
+						success : function(data) {		
+								 
+							 
+								 objectelement.html('add');
+								 alert(data.message);
+							 
+								window.location = location.href;
+									 
+						}
+					};					
+
+					$("#"+formid).ajaxForm(updateoptions);
+					
+					$("#"+formid).submit();
+		});
+		
+		
+		$(document).on('click','.pleasecleardesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td> please wait .. </td>');
+					$.post(basedomain+'settings/clearDesign',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});	
+		
+		$(document).on('click','.pleaseactivatedesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td> please wait .. </td>');
+					$.post(basedomain+'settings/activateDesign',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});
+		
+		$(document).on('click','.pleasetrashtedesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td> please wait .. </td>');
+					$.post(basedomain+'settings/trashDesign',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});
+	</script>
+{/literal}
+ 

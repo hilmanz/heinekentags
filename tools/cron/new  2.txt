@@ -1,0 +1,26 @@
+
+INSERT INTO nextgen_report_2014.summary_report_all (register_date, registrantcity, brandid, dstid, total, n_status) 
+SELECT DATE(mc.date_time) dd,modist.area,modist.brandid,mc.userid,COUNT(1) total,mc.n_status 
+FROM nextgen_web_2014.my_circle mc
+LEFT JOIN nextgen_web_2014.my_entourage me ON me.id = mc.friendid
+LEFT JOIN nextgen_web_2014.tbl_user_modist_references modist ON modist.userid = mc.userid
+WHERE   modist.userid = mc.userid AND me.id = mc.friendid
+GROUP BY mc.n_status,dd,modist.area,modist.brandid,mc.userid
+
+INSERT INTO nextgen_report_2014.summary_report_registrant ( dstid,registrantid,registrantname,registrantcity,register_date,dstbrandid,brandname,gender,age,n_status )
+SELECT mc.userid,mc.friendid,me.name,modist.area,DATE(mc.date_time) dd,modist.brandid,bfr.subbrandname,UPPER(SUBSTRING(me.sex,1,1)) gender,YEAR(
+				CURRENT_TIMESTAMP ) - YEAR( birthday ) - ( RIGHT(
+				CURRENT_TIMESTAMP , 5 ) < RIGHT( birthday, 5 ) ) age , mc.n_status 
+FROM nextgen_web_dev_2014.my_circle mc
+LEFT JOIN nextgen_web_dev_2014.my_entourage me ON me.id = mc.friendid
+LEFT JOIN nextgen_web_dev_2014.tbl_brand_preferences_references bfr ON bfr.preferenceid = me.Brand1_ID
+LEFT JOIN nextgen_web_dev_2014.tbl_user_modist_references modist ON modist.userid = mc.userid
+WHERE   modist.userid = mc.userid AND me.id = mc.friendid AND  bfr.preferenceid = me.Brand1_ID
+GROUP BY  dd,modist.area,modist.brandid,mc.userid,mc.friendid
+
+
+
+INSERT INTO nextgen_report_2014.summary_report_apps (dstid, event , total,n_status)  
+SELECT  mc.userid,mc.eventid,COUNT(1) total,mc.n_status
+FROM nextgen_web_2014.my_circle mc   
+GROUP BY mc.userid,mc.eventid,mc.n_status

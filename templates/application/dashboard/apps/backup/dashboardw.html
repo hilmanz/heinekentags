@@ -1,0 +1,168 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-paint-format">&nbsp;</span>Add New Templates</h2> 
+        </div><!-- end .titlebox -->
+        <div class="content"> 
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent designProject">
+                <section class="step1">
+                    <div class="row">
+                        <label for="bgPotrait">Background Potrait<br></label>
+						
+                        <input id="bgPotrait" name="bgPotrait" class="bg" type="file" />
+                    </div><!-- end .row -->  				
+					<div class="row">
+                        <label for="bgLandscape">Background Landscape<br></label>
+                        <input id="bgLandscape" name="bgLandscape" class="bg" type="file" />
+                    </div><!-- end .row -->
+					<div class="row">
+                        <label for="tqpotrait">Thankyou Potrait<br></label>
+                        <input id="tqpotrait" name="tqpotrait" class="bg" type="file" />
+                    </div><!-- end .row -->					
+					<div class="row">
+                        <label for="tqlandscape">Thankyou Landscape<br></label>
+                        <input id="tqlandscape" name="tqlandscape" class="bg" type="file" />
+                    </div><!-- end .row -->		
+					<div class="row">
+					 <label for="login_type" >Login Type<br></label>
+						<select name="login_type" id="login_type">
+							<option value="" selected> - </option>
+							<option value="2">Twitter</option>
+							<option value="1">Facebook </option>
+							<option value="3">Local</option>
+						</select>
+					</div>
+					{if $user->type==666}
+					<div class="row">
+					 <label for="client_type">Client<br></label>
+						<select name="client_type">
+								<option value="" selected> - </option>
+							{foreach from=$clientname name=k item=v} 
+								<option value="{$v.id}" >{$v.name}</option> 
+							{/foreach}
+						</select>
+					</div>	
+					{else}
+						<input type="hidden" name="client_type" value="{$user->id}">
+					{/if}									
+					<div class="row">
+                        <label for="redirecturi">Redirect URI<br></label>
+                        <input id="redirecturi" name="redirecturi" type="text" />
+                    </div><!-- end .row -->	
+					<label class="msg_name" style="color: red;" ></label>
+                    <div class="row row-submit">
+						<input type="hidden" name="submit" value="1">
+						<input type="submit" value="SAVE" class="button3 submitreg"  /> 
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end .designProject -->
+            <div id="demo-iphone">
+            	<img src="{$basedomain}assets/images/iphone5.png" />
+                <div id="backgroundApps">
+				  <img class="bg_home" src="{$basedomain}assets/images/bg-iphone.jpg"/>
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+              
+                </div>
+                <div id="backgroundThanks" class="backgroundThanks">
+                <img src="{$basedomain}assets/images/thankyou.png" />
+                </div>
+				
+            
+				
+				<div id="1" class="box" style='left: 0;
+    padding: 106% 27%;
+    position: absolute;
+    top: 0;
+    width: 100%;'>
+                <img src="{$basedomain}assets/images/login-fb.png" /></div>
+				<div id="2" class="box" style='left: 0;
+    padding: 106% 27%;
+    position: absolute;
+    top: 0;
+    width: 100%;'>
+                <img src="{$basedomain}assets/images/login-twitter.png" /></div>
+			
+            </div><!-- end .demo-iphone -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+    $('.submitreg').click(function () 
+    { 
+	 
+        var imgVal = $('#bgPotrait').val(); 
+        var imgVal2 = $('#bgLandscape').val(); 
+        var imgVal3 = $('#tqpotrait').val(); 
+        var imgVal4 = $('#tqlandscape').val(); 
+        
+		if(imgVal==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal2==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal3==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal4==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else{
+			return true;
+		}
+		
+        return false; 
+
+    }); 
+});
+ 
+</script> 
+{/literal}  
+
+<script>
+{literal}
+	function readURL(input,attr) {
+
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+                if(attr=='bgPotrait' || attr=='bgLandscape'  || attr=='tqpotrait' || attr=='tqlandscape'){
+                    $('.bg_home').attr('src', e.target.result);   
+					$( ".backgroundThanks" ).hide();
+					$('.box').hide();
+					
+                }
+        
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	$(document).ready(function() { 
+        //Init
+		
+		$(".bg").change(function(){
+            var attr = $(this).attr('name')
+            readURL(this,attr);
+        });
+
+        });
+		
+		
+	$(document).ready(function () {
+	
+     $('.box').hide();
+	 $('#1').show();
+    $('#login_type').change(function () {
+        $('.box').hide();
+        $('#'+$(this).val()).show();
+    });
+	});
+	
+{/literal}
+</script>

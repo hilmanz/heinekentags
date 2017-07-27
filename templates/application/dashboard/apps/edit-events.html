@@ -1,0 +1,150 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span>Edit Events</h2>
+            <h2 class="fr"><a href="{$basedomain}projects/eventList?id={$brand}" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+            	<p>You can customize registration fields and rearrange all features displayed on your event's application below.</p>
+            </div><!-- end .summary -->
+
+			<form id="forms" class="forms" method="post" action="#">
+            <div id="user-registration" class="boxcontent">
+                <section>
+                	<div class="row bb1">
+                        <label for="">Event Name</label>
+                        <input id="" name="event_name" value="{$getprocessupdate.name}" type="text" class="required">
+				 <div class="row">
+                       	<label class="msg_name" style="color: red;">{$status.msgn}</label>
+                  </div><!-- end .status -->
+			</div><!-- end .row -->
+		<div class="row bb1">
+                        <label for="">Registration Field</label>
+                        <div class="col2">
+								{foreach from=$field_list name=outer item=list} 
+								<div class="col4">
+									{foreach from=$list key=kk item=vv} 
+									
+									<div class="row">
+									{if $getprocessupdate.reg}
+										{if in_array($vv.code_name, $getprocessupdate.reg)}
+											<input type="checkbox" name="reg[]" value="{$vv.code_name}" checked />
+										{else}
+											<input type="checkbox" name="reg[]" value="{$vv.code_name}" />
+										{/if}
+									{else}
+										<input type="checkbox" name="reg[]" value="{$vv.code_name}" />
+									{/if}
+										<span class="label">{$vv.name}</span>
+									</div><!-- end .row -->
+									{/foreach}
+								</div><!-- end .col4 -->
+								{/foreach} 
+										 <div class="row">
+                       	<label class="msg_name" style="color: red;">{$status.reg}</label>
+                  </div><!-- end .status -->
+                        </div>
+                	</div><!-- end .row -->
+                	<div class="row bb1">
+                        <label for="">Plugin</label>
+                        <div class="col2 step3">
+					{foreach from=$plugin_list key=k item=v} 
+						<div class="row"> 
+							{if $getprocessupdate.schemaid == $v.schemaid}
+							<input type="checkbox" checked class="fl pluginCheck" name="plugin[]" value="{$v.schemaid}" data-idx="{$k}" />
+							{else}
+							<input type="checkbox" class="fl pluginCheck" name="plugin[]" value="{$v.schemaid}" data-idx="{$k}" />
+							{/if}
+							<div class="thumb-s fl">
+								<img src="{$basedomain}assets/images/{$v.appsicon}" />
+							</div>
+							<div class="plugin-desc fl">
+								<h4>{$v.appsnames}</h4>
+								<p>{$v.appsdecs}</p>
+							</div><!-- end .plugin-desc -->
+							<div class="plugin-child" style="padding:0 0 0 40px;">
+							{foreach from=$v.addon_list key=kk item=vv}
+							{if $getprocessupdate.addonid}
+								{if in_array($vv.id, $getprocessupdate.addonid)}
+								<div class="row">
+									<input type="checkbox" checked class="fl" name="addon[{$v.schemaid}][]" value="{$vv.id}" />
+									<div class="thumb-s fl">
+										<img src="{$basedomain}assets/images/{$vv.addonIcon}" />
+									</div>
+									<div class="plugin-desc fl">
+										<h4>{$vv.addon_name}</h4>
+										<p>{$vv.addonDesc}</p>
+										<div class="row">
+											<input name="addon_msg[{$v.schemaid}][{$vv.id}]" type="text" placeholder="Share Message" value="{$getprocessupdate.addonmsg[$vv.id]}">
+										</div><!-- end .row -->
+									</div><!-- end .plugin-desc -->
+								</div><!-- end .row -->
+								{else}
+								<div class="row">
+									<input type="checkbox" class="fl" name="addon[{$v.schemaid}][]" value="{$vv.id}" />
+									<div class="thumb-s fl">
+										<img src="{$basedomain}assets/images/{$vv.addonIcon}" />
+									</div>
+									<div class="plugin-desc fl">
+										<h4>{$vv.addon_name}</h4>
+										<p>{$vv.addonDesc}</p>
+										<div class="row">
+											<input name="addon_msg[{$v.schemaid}][{$vv.id}]" type="text" placeholder="Compose New Message">
+										</div><!-- end .row -->
+									</div><!-- end .plugin-desc -->
+								</div><!-- end .row -->
+								{/if}
+							{else}
+								<div class="row">
+									<input type="checkbox" class="fl" name="addon[{$v.schemaid}][]" value="{$vv.id}" />
+									<div class="thumb-s fl">
+										<img src="{$basedomain}assets/images/{$vv.addonIcon}" />
+									</div>
+									<div class="plugin-desc fl">
+										<h4>{$vv.addon_name}</h4>
+										<p>{$vv.addonDesc}</p>
+										<div class="row">
+											<input name="addon_msg[{$v.schemaid}][{$vv.id}]" type="text" placeholder="Share Message">
+										</div><!-- end .row -->
+									</div><!-- end .plugin-desc -->
+								</div><!-- end .row -->
+							{/if}
+							{/foreach}
+						</div><!-- end #camera-child -->
+						</div><!-- end .row -->                    
+                    {/foreach}
+					
+                        </div><!-- end .col2 -->
+                	</div><!-- end .row -->
+                	<div class="row bb1">
+                        <label for="confirm">Position</label>
+                        <div class="col2">
+                            <div class="row">
+                                <ul id="sortable">
+								{foreach from=$plugin_list key=k item=v}
+                                  <li class="ui-state-default"  id="{$v.schemaid}">{$v.appsnames}</li>
+								{/foreach} 
+                                </ul>
+								<div class="hidden_order">
+								{foreach from=$plugin_list key=k item=v}
+									<input type="hidden" name="plugin_order[]" value="{$v.schemaid}">
+								{/foreach}
+								</div>
+                            </div><!-- end .row -->
+                        </div><!-- end .col2 -->
+                	</div><!-- end .row -->
+                	<div class="row row-submit">
+                        <label for="">&nbsp;</label>
+						<input type="hidden" name="brand" value="{$brand}">
+						<input type="button" class="button4" value="CANCEL" onclick="javascript: window.location.href='{$basedomain}projects/eventList?id={$getprocessupdate.brand}' ;" />
+                    	<!-- <input type="button" class="button4" value="CANCEL" /> -->
+                    	<input type="submit" name="submit" class="button3" value="SAVE" />
+                	</div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+

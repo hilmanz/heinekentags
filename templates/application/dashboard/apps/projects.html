@@ -1,0 +1,61 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Manage Projects</h2>
+            {if $user->type gte 666 }
+            <h2 class="fr"><a href="{$basedomain}projects/add" class="button2">Add New</a></h2>
+            {/if}
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		 <p>Manage all your active projects here or you can start a new one by using the "add new" button. </p>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">Project Name</th> 
+					<th class="head0">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+                {foreach from=$projectList key=key item=val}
+				<tr>
+					<td width="1">{$val.no}</td>
+					<td><a href="#">{$val.brandname}</a></td> 
+					<td>
+                    	<a href="{$basedomain}projects/design?id={$val.id}" class="button"><span class="icon-paint-format">&nbsp;</span> Template</a>
+                    	<a href="{$basedomain}projects/eventList?id={$val.id}" class="button"><span class="icon-star3">&nbsp;</span> Events</a>
+                    	<a href="{$basedomain}users?id={$val.id}" class="button"><span class="icon-user4">&nbsp;</span> Users</a>
+                    	<a href="{$basedomain}projects/edit?id={$val.id}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+                        <a href="javascript:void(0)" class="button" 
+						{if $val.n_status eq '1'}
+						onClick="confirmation('{$basedomain}projects/publish?id={$val.id}','Confirm to Unpublish?')"
+						{else}
+						onClick="confirmation('{$basedomain}projects/publish?id={$val.id}','Confirm to Publish?')"
+						{/if}><span class="icon-trash">&nbsp;</span> {if $val.n_status eq '1'}Unpublish{else}Publish{/if}</a>
+                        {if $type_user eq '666'}
+                        <a href="javascript:void(0)" class="button" onClick="confirmation('{$basedomain}projects/hapus?id={$val.id}','Confirm to Delete?')"><span class="icon-trash">&nbsp;</span> Delete</a>
+                    	{/if}
+                    </td>
+				</tr>
+                {/foreach}				
+			</tbody>
+			</table>
+            {*}
+            <div class="paging">
+            	<a href="#"><span class="icon-first">&nbsp;</span></a>
+            	<a href="#"><span class="icon-backward2">&nbsp;</span></a>
+            	<a href="#">1</a>
+            	<a href="#">2</a>
+            	<a href="#" class="current">3</a>
+            	<a href="#">4</a>
+            	<a href="#">5</a>
+            	<a href="#"><span class="icon-forward3">&nbsp;</span></a>
+            	<a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+            {/*}
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home --> 

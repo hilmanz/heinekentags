@@ -1,0 +1,20 @@
+<div id="top">
+	<div class="wrapper menuHeader">    	
+       
+     <div style="float:left;">
+        	<a class="boxbtn userName">Hi, {$user->name}</a>
+			<a href="{$basedomain}home" class="boxbtn userName"> ( HOME )</a>
+        </div>
+       <a class="boxbtn logoutButton" href="{$basedomain}logout.php"><span class="ico icon-lock">&nbsp;</span><span>Logout</span></a>
+		 {*} <a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}career"><span class="ico icon-users">&nbsp;</span><span>Career</span></a>{/*}
+		<a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}location"><span class="ico icon-users">&nbsp;</span><span>Location</span></a>
+		<a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}news"><span class="ico icon-users">&nbsp;</span><span>News & Update</span></a>	
+		<a class="boxbtn {if $pages == 'addeducation'}active{/if}" href="{$basedomain}home/listeducation"><span class="ico icon-users">&nbsp;</span><span>Education</span></a>
+		<a class="boxbtn {if $pages == 'gallerycms'}active{/if}" href="{$basedomain}gallerycms"><span class="ico icon-users">&nbsp;</span><span>Gallery</span></a>
+      <a class="boxbtn {if $pages == 'videocms'}active{/if}" href="{$basedomain}videocms"><span class="ico icon-users">&nbsp;</span><span>Video</span></a>
+	  {*}<a class="boxbtn {if $pages == 'home'}active{/if}" href="{$basedomain}home" >Project</a>{/*}
+        
+
+    </div><!-- end .wrapper -->  
+    
+</div><!-- end #top --> 

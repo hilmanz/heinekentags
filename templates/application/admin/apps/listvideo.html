@@ -1,0 +1,61 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-users">&nbsp;</span> Video Background</h2>
+               <h2 class="fr"><a href="{$basedomain}videocms/addvideo" class="button2">Add New</a></h2>
+			  
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		 <p>Manage News that are allowed to access and use the CMS. You could also assign security roles to each News.</p>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">title video</th> 
+					<th class="head0">caption</th> 
+					<th class="head0">videoo</th> 
+					<th class="head0">Action</th> 
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+					
+						<td width="1">9</td>
+						<td><span>{$list[i].title_video}</span></td> 
+						<td><span>{$list[i].caption}</span></td> 
+						
+						<td><span><img src="http://i1.ytimg.com/vi/{$list[i].id_video_youtube}/default.jpg" /></span></td> 
+						<td>
+						
+                        	<a href="{$basedomain}videocms/videoDetail?id={$list[i].id_video}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+                        	
+                        </td>
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_career_list" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_career_list","paging_ajax_career",10);
+	var userid = {$user->id};
+</script>

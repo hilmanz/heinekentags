@@ -1,0 +1,125 @@
+<div class="page_section" id="dashboard-report">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-dashboard">&nbsp;</span>Dashboard report</h2>         
+        </div><!-- end .titlebox -->
+      <div class="content">  
+        
+		
+		
+            <div class="boxcontent" style="clear:both;">
+            	<div class="row-shorter"> 
+					<div class="shorter fr">
+						{if  $user->type==666}
+							<form method="GET" action="{$basedomain}home" id="filterform"> 
+				<span class="fl">Name</span> <select name='brandid' class='selectEvent fl submitter'> 
+						<option value="" >-- Select --</option>
+						{foreach from=$brandlist key=kek item=v}
+							<option name="{$v.id}" value="{$v.id}" {if $v.id == $getid}selected{/if}>{$v.name}</option>
+						{/foreach} 
+					</select>
+			{/if}
+			
+			<br><br>
+					</div>
+					<br><br>
+		<div><!-- end .row-shorter -->
+            	<div id="lineChartsData" style="min-width: 400px; margin: 0 auto;"></div>
+			
+            </div><!-- end .boxcontent-->   
+			</form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+
+
+
+<script type="text/javascript">
+
+
+{literal}
+$(function () {
+	$('#lineChartsData').highcharts({
+		chart: {
+			type: 'line',
+			marginRight: 130,
+			marginBottom: 25
+		},
+		credits: {
+            enabled: false
+        },
+		title: {
+			text: '',
+			x: -20 //center
+		},
+		subtitle: {
+			text: '',
+			x: -20
+		},
+		xAxis: {
+	{/literal}
+			categories: [{$highdate}],
+	{literal}
+			labels: {
+				formatter: function() {
+				return '<span class="labelChart" title="'+this.value+'">'+this.value+'</span>';
+				},
+				useHTML:true
+			}
+			
+		},
+		yAxis: {
+			title: {
+				text: ''
+			},
+			plotLines: [{
+				value: 0,
+				width: 1,
+				color: '#808080'
+			}]
+		},
+		tooltip: {
+			valueSuffix: ''
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'top',
+			x: -10,
+			y: 100,
+			borderWidth: 0
+		},
+		series: [{
+			name: 'Facebook',
+			{/literal}
+			data: [{$facebook}]
+			{literal}
+			
+		},{
+			name: 'Twitter',
+			{/literal}
+			data: [{$twitter}]
+			{literal}
+		}]
+	});
+});
+    
+</script>
+{/literal}
+
+
+<script> 
+
+{literal} 	
+	$(document).on('change','.submitter', function(){
+	
+		$("#filterform").submit();
+	
+	})
+	
+
+	
+</script>
+{/literal}

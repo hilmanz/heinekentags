@@ -1,0 +1,229 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-paint-format">&nbsp;</span>Add New Templates</h2> 
+        </div><!-- end .titlebox -->
+        <div class="content"> 
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent designProject">
+                <section class="step1">
+                    <div class="row">
+                        <label for="bgPotrait">Background Potrait<br>
+						<label for="ssS" style="font-size:12px; font-weight:bold;color:red;">* File 720x1280 type jpg/png</label>
+						</label>
+						
+                        <input id="bgPotrait" name="bgPotrait" class="bg" type="file" />
+							
+						<img width="55px" height="55px" class="bg_pot" src="{$basedomain}assets/images/bg-iphone.jpg">
+						
+                    </div><!-- end .row -->  				
+					<div class="row">
+                        <label for="bgLandscape">Background Landscape<br>
+						<label for="ssxxS" style="font-size:12px; font-weight:bold;color:red;">* File 1280x720 type jpg/png</label>
+						</label>
+                        <input id="bgLandscape" name="bgLandscape" class="bg" type="file" />
+						<img width="55px" height="55px" class="bg_land" src="{$basedomain}assets/images/bg-iphone.jpg">
+                    </div><!-- end .row -->
+					<div class="row">
+                        <label for="tqpotrait">Thankyou Potrait<br>
+						<label for="ssxS" style="font-size:12px; font-weight:bold;color:red;">* File 720x1280 type jpg/png</label>
+						</label>
+                        <input id="tqpotrait" name="tqpotrait" class="bg" type="file" />
+						<img width="55px" height="55px" class="bg_tqpo" src="{$basedomain}assets/images/bg-iphone.jpg">
+                    </div><!-- end .row -->					
+					<div class="row">
+                        <label for="tqlandscape">Thankyou Landscape<br>
+						<label for="ssxxxS" style="font-size:12px; font-weight:bold; color:red;">* File 1280x720 type jpg/png</label>
+						</label>
+                        <input id="tqlandscape" name="tqlandscape" class="bg" type="file" />
+						<img width="55px" height="55px" class="bg_tqla" src="{$basedomain}assets/images/bg-iphone.jpg">
+                    </div><!-- end .row -->		
+					<div class="row">
+					 <label for="login_type" >Login Type<br></label>
+						<select name="login_type" id="login_type">
+							<option value="" selected> - </option>
+							<option value="2">Twitter</option>
+							<option value="1">Facebook </option>
+						</select>
+					</div>
+
+					<div class="row fb" id="facebook_id" >
+							<div class="row">
+							<label for="redirecturi">Facebook ID<br></label>
+							<input id="redirecturi" name="fbid" type="text" />
+							</div>
+						   
+					</div>
+					<div class="row fb" id="twitt_id" >
+						<div class="row">
+						<label for="redirecturi">Twitter ID<br></label>
+                        <input id="redirecturi" name="twitid" type="text" />
+						</div>
+			
+						<div class="row">
+						<label for="redirecturi">Twitter Secret<br></label>
+                        <input id="redirecturi" name="twitsec" type="text" />
+						</div>
+						<div class="row">
+						<label for="redirecturi">Twitter Follow<br></label>
+                        <input id="redirecturi" name="twitfol" type="text" />
+						</div>
+					</div>
+					
+					{*}
+					{if $user->type==666}
+					<div class="row">
+					 <label for="client_type">Client<br></label>
+						<select name="client_type">
+								<option value="" selected> - </option>
+							{foreach from=$clientname name=k item=v} 
+								<option value="{$v.id}" >{$v.name}</option> 
+							{/foreach}
+						</select>
+					</div>	
+					{else}
+						<input type="hidden" name="client_type" value="{$user->id}">
+					{/if}	
+					{/*}
+					<div class="row">
+                        <label for="redirecturi">Redirect URI<br></label>
+                        <input id="redirecturi" name="redirecturi" type="text" />
+                    </div><!-- end .row -->	
+					<label class="msg_name" style="color: red;" ></label>
+                    <div class="row row-submit">
+						<input type="hidden" name="submit" value="1">
+						<input type="submit" value="SAVE" class="button3 submitreg"  /> 
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end .designProject -->
+            <div id="demo-iphone">
+            	<img src="{$basedomain}assets/images/iphone5.png" />
+                <div id="backgroundApps">
+				  <img class="bg_home" src="{$basedomain}assets/images/bg-iphone.jpg"/>
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+              
+                </div>
+                <div id="backgroundThanks" class="backgroundThanks">
+                <img src="{$basedomain}assets/images/thankyou.png" />
+                </div>
+				
+            
+				
+				<div id="1" class="box" style='left: 0;
+    padding: 106% 27%;
+    position: absolute;
+    top: 0;
+    width: 100%;'>
+                <img src="{$basedomain}assets/images/login-fb.png" /></div>
+				<div id="2" class="box" style='left: 0;
+    padding: 106% 27%;
+    position: absolute;
+    top: 0;
+    width: 100%;'>
+                <img src="{$basedomain}assets/images/login-twitter.png" /></div>
+			
+            </div><!-- end .demo-iphone -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+
+
+
+<script>
+{literal}
+	function readURL(input,attr) {
+
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+                if(attr=='bgPotrait'){
+                    $('.bg_home').attr('src', e.target.result);   
+					$('.bg_pot').attr('src', e.target.result);   
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+					
+                }if ( attr=='bgLandscape'){
+                   
+					$('.bg_home').attr('src', e.target.result);   
+					$('.bg_land').attr('src', e.target.result);  
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+				
+				}if ( attr=='tqpotrait'){
+                   
+					$('.bg_home').attr('src', e.target.result);   
+					$('.bg_tqpo').attr('src', e.target.result);  
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+				
+				}if ( attr=='tqlandscape'){
+                   
+					$('.bg_home').attr('src', e.target.result);   
+					$('.bg_tqla').attr('src', e.target.result);  
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+				
+				}
+				
+				
+				
+				
+        
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	$(document).ready(function() { 
+        //Init
+
+		$(".bg").change(function(){
+            var attr = $(this).attr('name')
+            readURL(this,attr);
+        });
+
+        });
+		
+		
+	$(document).ready(function () {
+	$("#twitt_id").hide();
+    $("#facebook_id").hide();
+    $('.box').hide();
+	$('#1').show();
+    $('#login_type').change(function () {
+        $('.box').hide();
+        $('#'+$(this).val()).show();
+    });
+	});
+	
+{/literal}
+</script>
+<script>
+{literal}
+$(document).ready(function(){
+    $('#login_type').on('change', function() {
+      if ( this.value == '1')
+
+  {
+    $("#facebook_id").show();
+	$("#twitt_id").hide();
+  }
+	if ( this.value == '2')
+  {
+	$("#twitt_id").show();
+    $("#facebook_id").hide();
+  }
+	if ( this.value == '')
+  {
+	$("#twitt_id").hide();
+    $("#facebook_id").hide();
+  }
+});
+});
+{/literal}
+</script>

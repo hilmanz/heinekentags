@@ -1,0 +1,205 @@
+{literal}
+<style>
+#selectfid{width:170px}
+#selectfidbrand{width:170px}
+#selectfidarea{width:170px}
+#selectfidpl{width:170px}
+#selectfidba{width:170px}
+</style>
+{/literal}
+<div class="row">
+    <div class="panel-primary">
+      <div id="do-register" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>REGISTRATION</h2>
+            </div>
+      		
+<form class="former" id="registerent" action="{$basedomain}service/registeruserwebsite/register"  method="POST" >
+<!-- <div style="border-collapse: collapse; border: 1px solid; overflow: auto; padding: 10px; width: 100px; float: right; position: fixed; right: 100px; top: 112px; height: 300px;"> 
+					<span >OUTPUT</span>
+					<p id="kluardisini" ></p>
+				</div>  -->
+               		<div class="formRegister2">
+                    	<div class="rows2">
+                            <label>Role</label>
+                            <select name="role" >
+								<option value="0">Not Have </option>
+								{foreach from=$role key=k item=v}				
+								   <option value="{$v.name}_{$v.id}" > {$v.name} </option>
+                                  {/foreach}
+                            </select>
+                       </div>
+                       <div class="rows2">
+                         	<label>Other Brand</label>			
+                            <select name="brandsubid"  class="brandsubid">
+                                    <option value="0"> Not Have </option>
+									{foreach from=$brand key=k item=v}	
+										<option value="{$v.id}">{$v.name|upper}</option>
+									{/foreach}									
+                            </select> 
+                        </div>
+                        <div class="rows2">
+                        	<label>Area Leader</label> 
+                            <select name="areaid"  class="areaid">
+							<option value="0" > Not Have </option>	
+							</select>
+                        </div>
+                    	<div class="rows2">
+                    		<label>Name</label><input class="inputRegister" type="text" name="name" />
+                    	</div>
+                        <div class="rows2">
+                        	<label>Nickname</label> <input class="inputRegister" type="text" name="nickname" />
+                        </div>
+                        <div class="rows2">
+                        	<label>Username</label><input class="inputRegister" type="text" name="username" />
+                        </div>
+                        <div class="rows2">
+                        	<label>Password</label> <input type="password" class="inputRegister" name="password" />
+                        </div>                      
+                        <div class="rows2">
+                        	<label>Brand</label> 			
+                            <select name="brandid"  class="brandid">
+                                    <option value="0">Not Have </option>
+                                   {foreach from=$brand key=k item=v}	
+										<option value="{$v.id}">{$v.name|upper}</option>
+									{/foreach}									
+                            </select>
+                        </div>
+                        <div class="rows2">
+                        	<label class="bluecolor">City</label>	
+                           <select name="city" >
+                                <option value="" > Not Have </option>
+									{foreach from=$citylist key=k item=v}	
+										<option value="{$v.id}">{$v.city|upper}</option>
+									{/foreach}	
+                        </select>
+                        </div>
+                        <div class="rows2">
+                        	<label>PL</label> 
+                            <select name="otherid" class="otherid" >
+                                    <option value="0" > Not Have </option>
+                                    
+                            </select>
+                        </div>
+                       	<div class="rows2">
+                        	<label>Last Name</label> <input class="inputRegister" type="text" name="lastname" />
+                        </div>
+                        <div class="rows2">
+                            <label>Gender</label>
+                            <div class="radioChoose">				
+                            <input type="radio" name="sex" value="Male" checked /> Male </div>
+                            <div class="radioChoose">	
+                            <input type="radio" name="sex" value="Female" /> Female</div>
+                        </div>
+                        <div class="rows2 passwordrows">
+                        <label>Email</label><input class="inputRegister" type="email" name="email" />
+                        </div>
+                        <div class="rows2">
+                          	<label class="confirmPass">Confirm Password</label> <input class="inputRegister" type="password" name="repassword" />
+                        </div>   
+						<div class="rows2">
+                            <label>Master Data</label>			
+                            <div class="radioChoose">	
+                            <input type="radio" name="masterrole" value="0" checked /> No</div>
+                            <div class="radioChoose">	
+                            <input type="radio" name="masterrole" value="1" /> Yes</div>
+                        </div>						
+                </div> <!-- /.formRegister2 -->
+				<!--<div style="padding:10px;border-collapse:collapse;">  	<div class="row" >		IMAGE </div><div class="row" >	<input type="file" name="img" /></div></div>
+				<div style="padding:10px;border-collapse:collapse;">  	<div class="row" >		CITY AREA
+				</div><div class="row" >	
+						<select name="city" >
+								<option value="" > NOT USED </option>
+								<option value="215" > JAKARTA </option>
+								<option value="407" > SURABAYA </option>
+								<option value="140" > BANDUNG </option>						
+								<option value="292" > MEDAN </option>
+								<option value="451" > JOGJA </option>
+								<option value="199" > BALI </option>
+								<option value="318" > PALEMBANG </option>
+						</select>
+				</div></div> -->
+                
+
+				
+				<!-- <div style="padding:10px;border-collapse:collapse;">    
+				<div class="row" > BIRTHDAY 
+				</div><div class="row" >	<input type="text" name="birthday" /> yyyy-mm-dd
+				</div>
+				</div>
+				<div style="padding:10px;border-collapse:collapse;">  
+				<div class="row" > PHONE NUMBER 
+				</div><div class="row" >	<input type="text" name="phone_number" />
+				</div>
+				</div> -->
+				<div style="padding:10px;border-collapse:collapse;"><input type="hidden" value="1" name="register"></div>
+				<div class="rows2">
+				  <input class="button registerrows fl reg-button" type="submit" value="Register">
+				  <a class="button reg-button fr" href="{$basedomain}register">Cancel</a>
+				  </div>
+				  
+				</form>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+<div id="popup-message">
+    <h3></h3>
+    <a class="button close-popup-message" href="{$basedomain}register">OK</a>
+</div>
+<div id="bg-popups"></div>
+{literal}
+
+<script>
+var servicedomain = basedomain+"service/";
+
+	var updateoptions = {
+						dataType : "html",
+						beforeSubmit: function(data) {
+                             $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html('Loading...');
+                             $("#popup-message").fadeIn();
+                             $(".close-popup-message").hide();
+                                        //$('#kluardisini').html("<blink>loading please wait</blink>");
+                            },
+                        success : function(data) {  
+                            $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html(data);
+                            $("#popup-message").fadeIn();
+                            $(".close-popup-message").show();
+                                    // $('#kluardisini').html("<p>"+data+"</p>");
+                        }
+					};					
+					
+
+$("#registerent").ajaxForm(updateoptions );
+
+
+$(document).ready(function(){
+	
+	
+			
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:2},function(data){
+				var html ="<option value='0' > NOT HAVE </option>";
+				$.each(data,function(i,e){
+					html+="<option value='"+e.id+"' >"+e.name+" "+e.last_name+" "+e.pagename+"</option>";
+				})
+				$(".otherid").html(html);
+			},"JSON")
+			
+		 
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:5},function(data){
+				var html ="<option value='0' > NOT HAVE </option>";
+				$.each(data,function(i,e){
+					html+="<option value='"+e.id+"' >"+e.pagename+"</option>";
+				})
+				$(".areaid").html(html);
+			},"JSON")
+			
+	
+	
+});
+
+
+</script>
+
+{/literal}

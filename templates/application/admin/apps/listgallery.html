@@ -1,0 +1,65 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-users">&nbsp;</span> Location Background</h2>
+               <h2 class="fr"><a href="{$basedomain}gallerycms/addgallery" class="button2">Add New</a></h2>
+			    <h2 class="fr"><a href="{$basedomain}gallerycms/addFolder" class="button2">New Folder</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		 <p>Manage News that are allowed to access and use the CMS. You could also assign security roles to each News.</p>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">title gallery</th> 
+					<th class="head0">caption</th> 
+					<th class="head0">photo</th> 
+					<th class="head0">folder</th> 
+					<th class="head0">Action</th> 
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+					
+						<td width="1">{$list[i].no}</td>
+						<td><span>{$list[i].title}</span></td> 
+						<td><span>{$list[i].caption}</span></td> 
+						
+						<td><span><img src="{$basedomainpublic}assets/gallery/{$list[i].name_folder}/{$list[i].photo}" /></span></td> 
+						<td><span>{$list[i].name_folder}</span></td> 
+						<td>
+						
+                        	<a href="{$basedomain}gallerycms/editphoto?id={$list[i].id_gallery}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+                        	{if $user->id != $list[i].ownerid}
+                        	<a href="javascript:void(0)" class="button" onClick="confirmation('{$basedomain}gallerycms/deletephoto?id={$list[i].id_gallery}','Confirm to Delete?')" ><span class="icon-trash">&nbsp;</span> Delete</a>
+                        	{/if}
+                        </td>
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_career_list" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_career_list","paging_ajax_career",10);
+	var userid = {$user->id};
+</script>

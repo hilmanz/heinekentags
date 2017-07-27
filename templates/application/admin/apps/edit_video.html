@@ -1,0 +1,61 @@
+{literal}
+	<script>
+	tinymce.init({selector:'textarea',
+
+    toolbar1: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+    toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | anchor | forecolor backcolor",
+
+
+	theme : "modern",
+
+    height: "100",
+    width:900
+	
+	});
+	</script>
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Add New Career</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+                <p>Shinkenjuku Management System helps you to overview all your Career. Add your new news to start. </p>
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>Career Name</h3>
+                    <p>Fill in the details below to submit your new project.</p>
+                    <div class="row">
+                        <label for="title">Title Gallery<br></label>
+                        <input id="title" name="title" type="text" value="{$load.title_video}" class="required" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+                    <div class="row">
+                        <label for="uname">Caption Gallery</label>
+                        <input id="description" name="caption" value="{$load.caption}" type="text" class="required">
+						<small class="msg_name" style="color: red;">{$status.msgn}</small>
+                    </div><!-- end .row -->
+					  <div class="row">
+                        <label for="uname">URL Youtube</label>
+                        <input id="description" name="video_url" value="{$load.url_video}" type="text" class="required">
+						<small class="msg_name" style="color: red;">{$status.url_video}</small>
+                    </div><!-- end .row -->
+                    <div class="row">
+                    <object width="425" height="350" data="http://www.youtube.com/v/{$load.id_video_youtube}" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/{$load.id_video_youtube}" /></object>
+					 </div><!-- end .row -->
+				   <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+						 <a href="{$basedomain}users" class="button4">CANCEL</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

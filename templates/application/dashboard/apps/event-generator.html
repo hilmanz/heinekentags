@@ -1,0 +1,386 @@
+ 
+	<div class="row">
+    <div class="panel-primary">
+      <div id="userList" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>EVENT APLICATION</h2>
+            	<div class="searchList">
+                  <a style="font-size:24px;" class=" icon-arrow-left Btn button fr" href="{$basedomain}project" >&nbsp;</a> 
+                </div>
+            </div>
+
+                         
+                    <div class="theBox-content">
+                        <div class="userList ">
+						
+							<form id="pleaseAddDesign" method="POST" action="{$basedomain}settings/addRowEvent"  enctype="multipart/form-data"   >
+								<table id="newadd-list"  class="table table-bordered table-hover tablesorter ">
+								<tr>
+									<td> On Event : 
+											<select name="parentid" style="width:40%;text-align:right"  >
+														<option value="0" >- Menu -</option>
+														 	{foreach from=$datacustomize key=eventkey item=event} 
+																<option value="{$event.id}" >{$event.name}</option> 
+															{/foreach}
+											</select>	
+								  </td> 
+								 
+									<td >	
+									<td> Event Name : <input type="text"  name="name"  /> </td> 
+									
+									 
+									<td> Save On Field : 
+											<select name="selectionfields" style="width:40%;text-align:right" class="pleaseUpdateOnBesideField" besideIdField ="section_with_id"     >
+														<option value="schemaid" >- pick one -</option>
+														<option value="url" >upload images url</option>
+														<option value="schemaid" >schema id</option>
+													</select>	
+									</td> 
+									<td> values : <input type="text"  name="schemaid" class="section_with_id" /> </td> 
+									<td >	
+										<input type="hidden" name="brand" value="{$projects}"   />
+										<a class="Btn button reg-button fr pleaseaddrowdesign" href="javascript:void(0)"  formid='pleaseAddDesign' >Add New Design</a> 
+									</td>
+								</tr>
+								</table>
+							</form>
+							<div class='clear'></div>
+						<table id="designapp-list"   class="table table-bordered table-hover tablesorter">
+						  	{foreach from=$datacustomize key=eventkey item=event} 
+								<tr>
+									 
+									<td colspan="3" style="text-align:left;width:5%" >
+									<form id="form_with_id_{$event.id}" method="POST" action="{$basedomain}settings/saveevent" enctype="multipart/form-data"   >
+										<h1><input type="text" name="name"  class="pleaseUpdates  input_with_id{$event.id}" value="{$event.name}" style="height: 50px; font-size: 40px;" /></h1>
+										<input type="hidden" name="designid"  value="{$event.id}" />
+										<input type="hidden" name="parentid"  value="{$event.parentid}" />
+										<input type="hidden" name="brand" value="{$projects}"   />
+									</form>
+									</td>
+									<td style="vertical-align:middle;">
+											{if $event.n_status==0}
+											
+												<a class="tiptip tableIcon icon-switch Btn button fl pleaseactivatedesign pleaseconnect_with_id{$event.id}" formid="form_with_id_{$event.id}" designid ="{$event.id}"  href="javascript:void(0)" updatetype="{if $event.url != ''}url{/if}{if $event.schemaid != ''}schemaid{/if}" title="Activated">&nbsp;</a>  
+												<a class="deleteIcon tiptip tableIcon Btn icon-remove2  button fl pleasetrashtedesign pleaseconnect_with_id{$event.id}" formid="form_with_id_{$event.id}" designid ="{$event.id}"  href="javascript:void(0)" updatetype="{if $event.url != ''}url{/if}{if $event.schemaid != ''}schemaid{/if}" title="Trash">&nbsp;</a> 
+											{else}
+												<a id="updateBtn"  class="tiptip tableIcon icon-loop2 Btn button fl pleaseconnect pleaseconnect_with_id{$event.id}" formid="form_with_id_{$event.id}" designid ="{$event.id}"  href="javascript:void(0)" updatetype="{if $event.url != ''}url{/if}{if $event.schemaid != ''}schemaid{/if}" title="Update">&nbsp;</a>  
+												<a class="deleteIcon tiptip tableIcon icon-close Btn button fl pleasecleardesign pleaseconnect_with_id{$event.id}" formid="form_with_id_{$event.id}" designid ="{$event.id}"  href="javascript:void(0)" updatetype="{if $event.url != ''}url{/if}{if $event.schemaid != ''}schemaid{/if}" title="Delete">&nbsp;</a> 
+											 {/if}
+										</td>
+								</tr>
+								{foreach from=$event.submenu key=key item=val} 
+									<tr style="{if $val.n_status==0}background-color:lightsalmon{/if}" class="pleasegiverow_with{$val.id}">
+										<td><a href="javascript:void(0)">-</a></td>
+										 
+										<td><input type="text" name="tmpName"  class="tmpName tmpName_withid{$val.id}" value="{$val.name}" designid="{$val.id}"   style="height: 50px; font-size: 30px;"  /></td>
+										<td style="text-align:left;"    >
+										{if $val.name=='registration'} <a href="{$basedomain}settings/registrations?projects={$event.id}" class="btn btn-link" > Registration Fields </a> {/if}
+										<form id="form_with_id_{$val.id}" method="POST" action="{$basedomain}settings/saveevent" enctype="multipart/form-data"   >
+											<input type="hidden" name="name" class="pleaseupdate_this_name_by_id{$val.id}" value="{$val.name}" />
+											{if $val.url != ''} 
+                                            <img  width="200px" src="{$val.url}" class= "fl previewimages_with_id{$val.id}" /> 
+											<input style="margin-left:10px;
+                                    vertical-align:bottom;" type="file" name="url" class="fl pleaseUpdates input_with_id{$val.id}"  value="" />
+											
+											{/if}
+											{if $val.schemaid != ''}
+												{if $val.name=='games'}<input type="hidden" name="schemaid" value="{$val.schemaid}" style="width:50%;" class="pleaseUpdates input_with_id{$val.id}"   />
+												{else}<input type="text" name="schemaid" value="{$val.schemaid}" style="width:50%;" class="pleaseUpdates input_with_id{$val.id}"   />
+												{/if}
+											{/if} 
+											
+											{if $val.name==''}
+												Save On Field : 
+													<select name="selectionfields" style="width:10%;text-align:right" class="pleaseUpdateOnBesideField" besideIdField ="input_with_id{$val.id}" designid ="{$val.id}"    >
+														<option value="schemaid" >- pick one -</option>
+														<option value="url" >upload images url</option>
+														<option value="schemaid" >schema id</option>
+													</select>	
+													<input type="text" name="schemaid" value="" style="width:20%;text-align:right" class="pleaseUpdates input_with_id{$val.id}"   />
+											{/if}
+											<input type="hidden" name="designid" value="{$val.id}"   /> 
+											<input type="hidden" name="parentid" value="{$val.parentid}"   /> 
+											<input type="hidden" name="brand" value="{$projects}"   />
+										</form>
+											{if $val.name=='games'}
+												{*}
+												<a href="javascript:void(0)" class="pleaseGenerateAppsID" designid="{$val.id}" >Get Apps ID</a>
+												{/*}
+												<span class="pleaseOpenGenerateAppsID{$val.id}" >
+													
+													<select  name='appsID' class='pleaseConnectAppsID listConnectAppsID{$val.id}' designid="{$val.id}" >
+													<option value='' >- please select apps id -</option>
+													{foreach from=$dataapps key=appskey item=appsval} 
+														<option value="{$appsval.appsid}_{$appsval.schemaid}" {if $val.schemaid==$appsval.schemaid}selected{/if}>
+														{$appsval.appsnames}
+														</option>
+													{/foreach }
+													<option value='newapps_-1' ><b>+ Create New Apps</b></option>
+													</select>
+												</span>
+												<br /><span  class='formGenerateAppsID{$val.id}' >
+											{foreach from=$dataapps key=appskey item=appsval} 
+												{if $val.schemaid==$appsval.schemaid}
+													<br />
+													<span>APPS NAME :</span><span> <input type='text' name='newappsname' value='{$appsval.appsnames}' class='newAppsName{$val.id}' placeholder='APPS NAME' />
+													</span>
+													<br />
+													<span>SCHEMA ID : </span><span><input type='text' name='newschemaid' value='{$appsval.schemaid}' class='newSchemaId{$val.id}' placeholder='SCHEMAID' />	</span> 								
+													<br />
+													<span> APPS ID :  </span><span> <input type='text' name='newappsid' value='{$appsval.appsid}' class='newAppsId{$val.id}' placeholder='APPSID' /></span>
+													
+												{/if}
+											{/foreach}
+												</span>
+												<a href='javascript:void(0)' class='generatebutton{$val.id} pleasegeneratenewapps'  designid='{$val.id}' > re-generate </a>
+											{/if}
+										</td>
+										<td style="vertical-align:middle;">
+											{if $val.n_status==0}
+											
+												<a class="tiptip tableIcon icon-switch Btn button fl pleaseactivatedesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{if $val.url != ''}url{/if}{if $val.schemaid != ''}schemaid{/if}" title="Activated">&nbsp;</a>  
+												<a class="deleteIcon tiptip tableIcon icon-remove2 Btn button fl pleasetrashtedesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{if $val.url != ''}url{/if}{if $val.schemaid != ''}schemaid{/if}" title="Trash">&nbsp;</a> 
+											{else}
+												<a id="updateBtn"  class="tiptip tableIcon icon-loop2 Btn button fl pleaseconnect pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{if $val.url != ''}url{/if}{if $val.schemaid != ''}schemaid{/if}" title="Update">&nbsp;</a>  
+												<a class="deleteIcon tiptip icon-close tableIcon Btn button fl pleasecleardesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{if $val.url != ''}url{/if}{if $val.schemaid != ''}schemaid{/if}" title="Delete">&nbsp;</a> 
+											 {/if}
+										 </td>
+									</tr>
+								{/foreach}
+									<tr>
+									<td> add new Event on This Event </td>
+									<td colspan='7'> 
+									<form id="pleaseAddDesign_onparentid{$event.id}" method="POST" action="{$basedomain}settings/addRowEvent"  enctype="multipart/form-data"   >
+									<input type="hidden" name="parentid" value="{$event.id}" />
+								   
+									  Event Name : <input type="text"  name="name"  /> 
+								
+									 
+									  Save On Field : 
+											<select name="selectionfields" style="width:20%;text-align:right" class="pleaseUpdateOnBesideField" besideIdField ="section_with_id{$event.id}"     >
+														<option value="schemaid" >- pick one -</option>
+														<option value="url" >upload images url</option>
+														<option value="schemaid" >schema id</option>
+													</select>	
+									 	<span style="position: absolute; width: 350px; padding-left: 10px; line-height: 30px;"> values : <input type="text"  name="schemaid" class="section_with_id{$event.id}" style="float:right" />  </span>
+										<input type="hidden" name="brand" value="{$projects}"   />
+										<a class="Btn button reg-button fr pleaseaddrowdesign" href="javascript:void(0)"  formid='pleaseAddDesign_onparentid{$event.id}' >Insert On This Event</a> 
+										</form>
+									</td>
+								 
+									
+									</tr>
+									<tr><td colspan="7" style="background-color:grey" ></td></tr>
+							 {/foreach} 
+						 
+							</table>
+					  </div> <!-- /.forms --> 
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+
+{literal}
+	<script>
+	
+		$(document).on('change','.tmpName',function(){
+			var designid = $(this).attr('designid');
+			$(".pleaseupdate_this_name_by_id"+designid).val($(this).val());
+			var style = $(this).attr('style');
+			$(this).attr('style',style+' ;background-color: lightgreen;');
+			
+		});
+		
+		$(document).on('change','.pleaseUpdates',function(){
+			var style = $(this).attr('style');
+			$(this).attr('style',style+' ;background-color: lightgreen;');
+			
+		});
+		
+		$(document).on('change','.pleaseUpdateOnBesideField',function(){
+			var besideIdField = $(this).attr('besideIdField'); 
+			var selectionfields = $(this).val();
+			var types = 'text';
+			if(selectionfields=='url') types = 'file'; 
+			$("."+besideIdField).attr('type',types); 
+			$("."+besideIdField).attr('name',selectionfields); 
+			
+		});
+		
+		$(document).on('click','.pleaseconnect',function(){
+					var objectelement = $(this);
+					var designid = $(this).attr('designid');
+					var updatetype = $(this).attr('updatetype');
+					var formid = $(this).attr('formid');
+					var updateoptions = {
+					dataType:  'json', 	
+					beforeSubmit: function(data) {  
+							$("#updateBtn").removeClass("icon-loop2");
+							$('.pleasegiverow_with'+designid).css('background-color','lightgreen');
+							objectelement.html('<div style="font-size:12px;">saving..</div>');
+					},
+						success : function(data) {		
+								  $('.pleasegiverow_with'+designid).css('background-color','');
+								$(".input_with_id"+designid).css('background-color','#9A9DAC');
+								$(".tmpName_withid"+designid).css('background-color','#9A9DAC');
+								  //objectelement.html('update');
+								 objectelement.html('&nbsp;');
+								if(data.filename!='') $('.previewimages_with_id'+designid).attr('src',data.filename);
+									 
+						}
+					};					
+
+					$("#"+formid).ajaxForm(updateoptions);
+					
+					$("#"+formid).submit();
+		});	
+		
+		
+		$(document).on('click','.pleaseaddrowdesign',function(){
+					var objectelement = $(this);
+					  
+					var formid = $(this).attr('formid');
+					var updateoptions = {
+					dataType:  'json', 	
+					beforeSubmit: function(data) {  
+							objectelement.html('saving..');
+					},
+						success : function(data) {		
+								 
+							 
+								 objectelement.html('add');
+								// alert(data.message);
+							 
+									window.location = location.href;
+									 
+						}
+					};					
+
+					$("#"+formid).ajaxForm(updateoptions);
+					
+					$("#"+formid).submit();
+		});
+		
+		
+		$(document).on('click','.pleasecleardesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td colspan="7"> <h1>please wait .. </h1>  </td>');
+					$.post(basedomain+'settings/clearEvent',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});	
+		
+		$(document).on('click','.pleaseactivatedesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td colspan="7"> <h1>please wait .. </h1>  </td>');
+					$.post(basedomain+'settings/activateEvent',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});
+		
+		$(document).on('click','.pleasetrashtedesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td colspan="7"> <h1>please wait .. </h1> </td>');
+					$.post(basedomain+'settings/trashEvent',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});
+		
+		
+		$(document).on('click','.pleaseGenerateAppsID',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleaseOpenGenerateAppsID'+designid).html('<td > <h1>please wait .. </h1> </td>');
+					$.post(basedomain+'settings/getAppsID',function(data){
+						var html = "no data";
+						  if(data.result){
+							html = getAppsIDView(data.data,designid);
+						  }
+						  
+						  $('.pleaseOpenGenerateAppsID'+designid).html(html);
+					},"JSON");
+		});
+		
+		function getAppsIDView(data,designid){
+				var html = "<select name='appsID' class='pleaseConnectAppsID listConnectAppsID"+designid+"' designid='"+designid+"' >";
+					html+="<option value='' >- please select apps id -</option>";
+				$.each(data,function(i,e){
+					html+="<option value='"+e.appsid+"_"+e.schemaid+"'  >"+e.appsnames+"</option>";
+				});
+				html+="<option value='newapps_-1' >+ Create New Apps</option>";
+				html +="</select>";
+				return html;
+		
+		}
+		 
+		function geDetailAppsID(designid,schemaid,appsid,appsname){
+				var html  ="";
+				html += "<br /><span> APPS NAME : </span><span><input type='text' name='newappsname' value='"+appsname+"' class='newAppsName"+designid+"' placeholder='APPS NAME' /> </span>";	
+				
+				html += "<br /><span>SCHEMA ID : </span><span><input type='text' name='newschemaid' value='"+schemaid+"' class='newSchemaId"+designid+"' placeholder='SCHEMAID' /> </span>";
+					
+				html += "<br /><span>APPS ID : </span><span><input type='text' name='newappsid' value='"+appsid+"' class='newAppsId"+designid+"'   placeholder='APPSID' /> </span>"; 
+				return html;
+		}
+		
+		$(document).on('change','.pleaseConnectAppsID',function(){
+			var designid = $(this).attr('designid');
+			var arrThisVal = $(this).val().split("_");
+			var appsname = $.trim($(".listConnectAppsID"+designid+ " option:selected").text()); 
+			 
+			
+			var schemaid = arrThisVal[1];
+			var appsid = arrThisVal[0];
+			
+			if(appsid=='newapps'){
+					var html = geDetailAppsID(designid,'','','');
+					$(".generatebutton"+designid).html("generate");
+				
+					$(".formGenerateAppsID"+designid).html(html);
+			}else{
+				var html = geDetailAppsID(designid,schemaid,appsid,appsname);
+				$(".generatebutton"+designid).html("re-generate");
+				$(".formGenerateAppsID"+designid).html(html);
+				$(".input_with_id"+designid).val(schemaid);
+			
+			}
+		});
+		
+		$(document).on('click','.pleasegeneratenewapps',function(){
+					var objectelement = $(this); 
+					var labelGenerateApps = $.trim(objectelement.html());
+					var objtext = objectelement.html();
+					var designid = $(this).attr('designid');
+					var schemaid = $(".newSchemaId"+designid).val();
+					var appsname = $(".newAppsName"+designid).val();
+					 
+					 $(this).html('please wait ..  ');
+					$.post(basedomain+'settings/addNewAppsID',{schemaid:schemaid,appsname:appsname},function(data){ 
+						  if(data.result){
+							var appsid = data.data.appsid;
+							var html=$("<option value='"+appsid+"_"+schemaid+"'  >"+appsname+"</option>");
+							if(labelGenerateApps!='re-generate')html.insertBefore(".listConnectAppsID"+designid+" option[value='newapps_-1']");
+							$(".newSchemaId"+designid).val('');
+							$(".newAppsName"+designid).val('');
+							$(".newAppsId"+designid).val(''); 
+							var html = geDetailAppsID(designid,schemaid,appsid,appsname);
+							 objectelement.html("re-generate");
+							$(".formGenerateAppsID"+designid).html(html);
+							 
+							$(".listConnectAppsID"+designid).val(appsid+"_"+schemaid);
+						  }else{
+								alert('failed');
+							 objectelement.html(objtext);
+						  }
+							
+						 
+					},"JSON");
+		});
+	</script>
+{/literal}
+ 

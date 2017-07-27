@@ -1,0 +1,109 @@
+/*
+Theme Name: HEINEKEN
+Version: 1.0
+Author: ACIT JAZZ - 2012
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-spacing: 0;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+body{
+	background: url(../images/bg.png) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.../images/bg.png', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg.png', sizingMethod='scale')";
+	margin:0;
+	padding:0;
+	font-size:12px;
+	color:#fff;
+	line-height:1.4;
+    font-family: 'RobotoCondensed';
+}
+#bg { position: fixed; top: 0; left: 0; }
+.bgwidth { width: 100%; }
+.bgheight { height: 100%; }
+#logo{
+	width:75%;
+	max-width:392px;
+	margin:0 auto;
+	display:block;
+	position:relative;
+	top:50px;
+}
+#logo img,#thanks img{
+	width:100%;
+}
+#thanks{
+	width:75%;
+	max-width:446px;
+	margin:0 auto;
+	display:block;
+	position:relative;
+	top:50px;
+}
+#btnLogin,#buttonbox{
+	position:absolute;
+	bottom:0;
+}
+#buttonbox{
+	width:100%;
+	background:#fff;
+	border-radius:5px;
+	left:0;
+}
+#btnLogin{ 	
+	bottom: 0;
+	display:none;
+    height: auto;
+    left: 10px;
+    position: absolute;
+    width: 100%;
+}
+.beforeLogin #buttonbox{
+	display:none;
+}
+.beforeLogin #btnLogin{
+    display: block;
+}
+.logo2{
+	display:block;
+}
+.logo1{
+	display:none;
+}
+.beforeLogin .logo2{
+	display:none;
+}
+.beforeLogin .logo1{
+	display:block;
+}

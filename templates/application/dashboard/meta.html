@@ -1,0 +1,52 @@
+<head>
+	<meta charset="utf-8">
+	<title>BRANDIFI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="BRANDIFI">
+    <link rel="icon" href="{$basedomain}assets/images/favicon.png" type="image/x-icon">
+	<meta name="author" content="BRANDIFI">
+    <link href="{$basedomain}assets/css/colpick.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/brandifi.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="{$basedomain}assets/css/atooltip.css" rel="stylesheet"  media="screen" />
+    <!-- // IE  // -->
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+    
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.atooltip.js"></script>
+    
+	<!-- JS library -->
+	<script>
+		var basedomain = "{$basedomain}" ;
+		var basedomainpath = "{$basedomainpath}" ;
+		var pages = "{$pages}" ;
+		var locale = {$locale|@json_encode};
+	</script> 
+	<!--- END ---->
+
+    <!-- // PLUGIN  // -->
+	<script type="text/javascript" src="{$basedomain}assets/js/modernizr.custom.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery.easing.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.steps.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/colpick.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/php.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.form.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/kipagination.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/contentviews.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/contentHelper.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/touchbase.js"></script>
+    <script src="{$basedomain}assets/js/highcharts.js"></script>
+    <script src="{$basedomain}assets/js/modules/exporting.js"></script>
+    <script type="text/javascript">
+    {literal}
+        $(document).ready(function() {
+            $("#datepicker").datepicker({dateFormat:"yy-mm-dd"});
+        }); 
+    {/literal}
+    </script>
+</head>
+

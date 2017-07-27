@@ -1,0 +1,22 @@
+/*
+Theme Name:  shinkejnjuku
+Version: 1.0
+Author: Febriansyah 2014
+*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat|Droid+Sans|Love+Ya+Like+A+Sister);
+
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	  background: url(../images/bg.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color:#FFF;
+  font-size:32px;
+  text-align:center;
+}
+body p{
+	margin:225px 0 0 0;
+}
+/*-------------------------------*/

@@ -1,0 +1,114 @@
+ <div class="clear">
+ {if $pages=='home'}
+ <form method="GET" action="{$basedomain}{$pages}"  id="filterform">
+     <div class="col-lg-9 shorter-touch">
+        <div class="shorter">
+             
+                <div class="rows">
+                <select class="styled submitter uid" name="uid" >
+					
+					{if $badetail|@count lt 2 }
+					{else} <option value=''>Sort by User</option>
+					{/if}  
+                   {foreach from=$badetail key=k item=v}
+										<option {if $uid==$v.id}selected{/if} value="{$v.id}" > {$v.name} </option>
+					{/foreach}	
+                </select>
+                </div><!-- /.rows -->
+                <div class="rows">
+                <select class="styled submitter brandid"   name="brandid" >
+ 
+					{if $branddetail|@count lt 2 }
+					{else}<option value=''>Sort by Event</option>
+					{/if}
+ 
+						{foreach from=$branddetail key=k item=v}
+                            <option value="{$v.id}" {if $brandid==$v.id }selected{/if} >{$v.brandname}</option>
+                        {/foreach}
+                </select>
+                </div><!-- /.rows -->
+                {*}
+                <div class="rows">
+                <select class="styled submitter n_status"   name="n_status" >
+                    <option value=''>Sort by Status</option>
+                      
+                            <option value="0" {if $n_status=='0' }selected{/if} > PENDING</option>
+                            <option value="1" {if $n_status=='1' }selected{/if} > APPROVED</option>
+                            <option value="2" {if $n_status=='2' }selected{/if} > REJECTED</option> 
+                           
+                </select>
+                </div><!-- /.rows -->
+            
+				 
+                <div class="rows">
+                <select class="styled submitter areaid"   name="areaid" >
+                    <option value=''>Sort by DST Area</option>
+                     {section name=i loop=$getCity}
+                            <option value="{$getCity[i].area}" {if $areaid==$getCity[i].area }selected{/if} > {$getCity[i].area|upper}</option>
+                            {/section}
+                </select>
+                </div><!-- /.rows -->
+ 
+				{/*}
+ 
+             
+        </div><!-- /.shorter -->
+{/if}
+{if $pages=='chartreport'}
+	<form method="GET" action="{$basedomain}{$pages}"  id="filterform">
+     <div class="col-lg-9">
+        <div class="shorter">
+                <div class="rows">
+                <select class="styled submitter brandid"   name="brandid" >
+                    <option value=''>Sort by DST Brand</option>
+                        <option value="4" {if $brandid==4 }selected{/if} >AMILD</option>
+                            <option value="5" {if $brandid==5 }selected{/if} > MARLBORO</option>
+                </select>
+                </div><!-- /.rows -->
+                <div class="rows">
+                <select class="styled submitter n_status"   name="n_status" >
+                    <option value='-1'>Sort by Status</option>
+                   
+                            <option value="0" {if $n_status=='0' }selected{/if} > PENDING</option>
+                            <option value="1" {if $n_status=='1' }selected{/if} > APPROVED</option>
+                            <option value="2" {if $n_status=='2' }selected{/if} > REJECTED</option> 
+                </select>
+                </div><!-- /.rows -->
+                <div class="rows">
+                <select class="styled submitter areaid"   name="areaid" >
+                    <option value=''>Sort by DST Area</option>
+                     {section name=i loop=$getCity}
+                            <option value="{$getCity[i].area}" {if $areaid==$getCity[i].area }selected{/if} > {$getCity[i].area|upper}</option>
+                            {/section}
+                </select>
+                </div><!-- /.rows -->
+           
+        </div><!-- /.shorter -->
+{/if}
+     </div><!-- /.col-lg-6 -->
+     <div class="col-lg-3 date-touch">
+        <div id="datePick" class="shorter">
+         
+                <div class="rows fr">
+                    <input type="text" class="datepicker submitter enddate" name="enddate"  value="{$enddate}"  >
+                </div><!-- /.rows -->
+                <div class="rows fr">
+                    <input type="text" class="datepicker startdate"  name="startdate"   value="{$startdate}" >
+                </div><!-- /.rows -->
+           
+        </div><!-- /.shorter -->
+     </div><!-- /.col-lg-6 -->
+	  </form>
+  </div><!-- /.clear -->
+  
+  {literal}
+  
+	<script type="text/javascript">
+	
+		$(document).on('change','.submitter', function(){
+		
+			$("#filterform").submit();
+		
+		})
+	</script>
+  {/literal}

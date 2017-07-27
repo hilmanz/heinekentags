@@ -1,0 +1,207 @@
+ <div class="row">
+    <div class="panel-primary">
+      <div id="userList" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>REGISTRATION FIELDS</h2>
+            	<div class="searchList">
+                   <a style="font-size:24px;" class=" icon-arrow-left Btn button fr" href="{$basedomain}project" >&nbsp;</a> 
+                </div>
+            </div>
+
+                         
+                    <div class="theBox-content">
+                        <div class="userList ">
+						
+							<form id="pleaseAddDesign" method="POST" action="{$basedomain}settings/addregistrationfields"   >
+								<table id="newadd-list"  class="table table-bordered table-hover tablesorter ">
+								<tr>
+									 
+									<td> field server name :
+									<select name="fieldnames"   >
+									<option value="" >- pick one - </option>
+									{foreach from=$allfields key=allfieldskey item=allfieldsval} 
+										<option value="{$allfieldsval.fieldnames}" >{$allfieldsval.fieldnames}</option>
+									{/foreach}
+									</select>
+									or Add New Fields 
+									<input type="text"  name="fieldnamesnew"  /> </td> 
+									<td> field application name : <input type="text"  name="appsVariables"   /> </td> 
+									<td> field mandatory : 
+										yes <input type="radio" name="mandatory"   value="1"  />
+										no <input type="radio" name="mandatory"   value="0"  />
+									</td> 
+									<td>
+									<input type="hidden" name="eventid" value="{$projects}"   />
+										<a class="Btn button reg-button fr pleaseaddrowdesign" href="javascript:void(0)"  formid='pleaseAddDesign' >Add New Fields</a> 
+									</td>
+								</tr>
+								</table>
+							</form>
+							<div class='clear'></div>
+						<table id="designapp-list" class="table table-bordered table-hover tablesorter">
+							<tr>
+							<th>Field Server Name </th>
+							<th>Field Application Name </th>
+							<th>Field Mandatory </th>
+							<th>Actions </th>
+							</tr>
+						  	{foreach from=$datacustomize key=key item=val} 
+							<tr style="{if $val.n_status==0}background-color:lightsalmon{/if}" class="pleasegiverow_with{$val.id}">
+								
+								<td >
+									<select name="tmpFieldsname"  targetID="fieldnames_with_id{$val.id}" class="pleaseGivethisValues pleaseUpdates select_with_id{$val.id}" >
+									<option value="" >- pick one - </option>
+									{foreach from=$allfields key=allfieldskey item=allfieldsval} 
+										<option value="{$allfieldsval.fieldnames}" {if $val.fieldnames==$allfieldsval.fieldnames}selected{/if} >{$allfieldsval.fieldnames}</option>
+									{/foreach}
+									</select>
+								</td> 
+								<td style="text-align:left;width:65%"   >
+								<form id="form_with_id_{$val.id}" method="POST" action="{$basedomain}settings/saveregistrationfields"   > 
+									<input type="text" name="appsVariables" value="{$val.appsVariables}" style="width:50%" class="fl pleaseUpdates input_with_id{$val.id}"   />   
+									<input type="hidden" name="mandatory" value="{$val.mandatory}"  class="mandatory_with_id{$val.id}"  /> 
+									<input type="hidden" name="index" value="{$val.index}"   /> 
+									<input type="hidden" name="id" value="{$val.id}"   /> 
+									<input type="hidden" name="fieldnames" value="{$val.fieldnames}" class="fieldnames_with_id{$val.id}"   /> 
+									<input type="hidden" name="eventid" value="{$val.eventid}"   /> 
+								</form>
+								</td>
+								<td>								
+									yes <input type="radio" name="tmpmandatory{$val.id}" targetID="mandatory_with_id{$val.id}" value="1" {if $val.mandatory==1}checked{/if} class="pleaseGivethisValues " />
+									no <input type="radio" name="tmpmandatory{$val.id}" targetID="mandatory_with_id{$val.id}" value="0" {if $val.mandatory==0}checked{/if} class="pleaseGivethisValues " />
+								</td>
+								<td style="vertical-align:middle;">
+									{if $val.n_status==0}
+										<a class="tiptip Btn tableIcon icon-switch button fl pleaseactivatedesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Activated">&nbsp;</a>  
+										<a class="deleteIcon tiptip Btn tableIcon icon-remove2 button fl pleasetrashtedesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Trash">&nbsp;</a> 
+									{else}
+										<a id="updateBtn" class="tiptip tableIcon icon-loop2 Btn button fl pleaseconnect pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Update">&nbsp;</a>  
+										<a class="deleteIcon tiptip tableIcon icon-close Btn button fl pleasecleardesign pleaseconnect_with_id{$val.id}" formid="form_with_id_{$val.id}" designid ="{$val.id}"  href="javascript:void(0)" updatetype="{$val.updateon}" title="Delete">&nbsp;</a> 
+									 {/if}
+								 </td>
+							</tr>
+							 {/foreach}
+							
+						 
+							</table>
+					  </div> <!-- /.forms --> 
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+
+{literal}
+	<script>
+ 
+	
+		$(document).on('change','.pleaseUpdates',function(){
+			var style = $(this).attr('style');
+			$(this).attr('style',style+' ;background-color: lightgreen;');
+			
+		});
+		
+		$(document).on('change','.pleaseGivethisValues',function(){
+			var targetID = $(this).attr('targetID');
+			$("."+targetID).val($(this).val());
+			
+		});
+		
+		$(document).on('change','.pleaseUpdateOnBesideField',function(){
+			var besideIdField = $(this).attr('besideIdField'); 
+			var updateon = $(this).val();
+			var types = 'text';
+			if(updateon=='images') types = 'file'; 
+			$("."+besideIdField).attr('type',types); 
+			$("."+besideIdField).attr('name',updateon); 
+			
+		});
+		
+		$(document).on('click','.pleaseconnect',function(){
+					var objectelement = $(this);
+					var designid = $(this).attr('designid');
+					var updatetype = $(this).attr('updatetype');
+					var formid = $(this).attr('formid');
+					var updateoptions = {
+					dataType:  'json', 	
+					beforeSubmit: function(data) {  
+							$("#updateBtn").removeClass("icon-loop2");
+							$('.pleasegiverow_with'+designid).css('background-color','lightgreen');
+							objectelement.html('<div style="font-size:12px;">saving..</div>');
+					},
+						success : function(data) {		
+								 $('.pleasegiverow_with'+designid).css('background-color','');
+								 $(".input_with_id"+designid).css('background-color','#9A9DAC');
+								 $(".select_with_id"+designid).css('background-color','white');
+								  //objectelement.html('update');
+								  objectelement.html('&nbsp;');
+								  $("#updateBtn").addClass("icon-loop2");
+								// alert(data.message);
+								if(updatetype=='images') $('.previewimages_with_id'+designid).attr('src',data.filename);
+									 
+						}
+					};					
+
+					$("#"+formid).ajaxForm(updateoptions);
+					
+					$("#"+formid).submit();
+		});	
+		
+		
+		$(document).on('click','.pleaseaddrowdesign',function(){
+					var objectelement = $(this);
+					  
+					var formid = $(this).attr('formid');
+					var updateoptions = {
+					dataType:  'json', 	
+					beforeSubmit: function(data) {  
+					
+							objectelement.html('saving..');
+					},
+						success : function(data) {		
+								 
+							 
+								 objectelement.html('add');
+								 //alert(data.message);
+							 
+								window.location = location.href;
+									 
+						}
+					};					
+
+					$("#"+formid).ajaxForm(updateoptions);
+					
+					$("#"+formid).submit();
+		});
+		
+		
+		$(document).on('click','.pleasecleardesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td> please wait .. </td>');
+					$.post(basedomain+'settings/clearRegistrationFields',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});	
+		
+		$(document).on('click','.pleaseactivatedesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td> please wait .. </td>');
+					$.post(basedomain+'settings/activateRegistrationFields',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});
+		
+		$(document).on('click','.pleasetrashtedesign',function(){
+					var objectelement = $(this); 
+					var designid = $(this).attr('designid');
+					$('.pleasegiverow_with'+designid).html('<td> please wait .. </td>');
+					$.post(basedomain+'settings/trashRegistrationFields',{designid:designid},function(data){ 
+						//alert(data.message);
+						window.location = location.href;
+					},"JSON");
+		});
+	</script>
+{/literal}
+ 

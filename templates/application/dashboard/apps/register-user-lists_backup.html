@@ -1,0 +1,88 @@
+
+<div class="row">
+    <div class="panel-primary">
+      <div id="userList" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>User List</h2>
+            	<div class="searchList">
+                   <input type="text" size="16" name="search" id="search" class="span2" onfocus="if(this.value=='Search...')this.value='';" onblur="if(this.value=='')this.value='Search...';" value="{if $search}{$search}{else}Search...{/if}">
+                                <button type="submit" class="btn btnSearch">GO</button>
+                       	{*}<input id="search" class="fr" type="text" name="search" value="" placeholder="search">{/*}
+                </div>
+            </div>
+
+                         
+                    <div class="theBox-content">
+                        <div class="userList">
+							 <table class="table table-bordered table-hover table-striped tablesorter">
+                                <thead>
+                                  <tr>
+                                    <th class="center" width="80"><h3><span>No</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Name</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Email</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Role</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Area</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Brand</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Action</span> <i class="fa fa-sort"></i></h3></th>                                  </tr>
+                                </thead>
+                                <tbody class="pagingenotourage">
+										{if $list}
+										{section name=i loop=$list}
+                                    <tr>
+                                        <td class="center">{$list[i].no}&nbsp;</td>
+                                       	<td>{$list[i].nama}</td> 
+										<td>{$list[i].email}</td>
+										<td>{$list[i].Definition}</td>
+										<td>{$list[i].province}</td>
+										<td>{$list[i].brandname}</td>
+										<td>      	<a class="Btn button red" href="{$basedomain}register/registeredit?id={$list[i].ownerid}" >Edit</a> | 
+										
+										      	<a class="Btn button " href="{$basedomain}register/hapus?id={$list[i].ownerid}" >Delete</a>
+										</td>
+									
+                                    </tr>
+                                 	{/section}
+				{/if}
+                                  <tr>
+                                </tbody>
+                              </table>
+							<div class="paging" id="paging_of_user_list"></div> <!-- END .paging -->
+						
+                        </div> <!-- /.forms -->
+							<script>
+		
+			getpaging(0,{$total},"paging_of_user_list","paging_ajax_merchandise",10);
+		 
+				var startdate = "{$startdate}";
+				var enddate = "{$enddate}";
+				var search = "{$search}";
+				var publishedtype = "{$publishedtype}";
+				{literal}
+					$(document).on('change','#publishedtype',function(){
+						$(".formsubmitmanualmoderation").submit();
+					})
+				{/literal}
+		</script>
+                       	<a class="Btn button reg-button fr" href="{$basedomain}register/doregister" >REGISTER</a>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+
+			<script>
+		var searchType = '{$searchType}';
+		{literal}
+		$(document).on("change","#moderationtype",function(){
+			var modetype = $(this).val();
+			window.location = basedomain+"moderation/"+modetype;
+		
+		});
+
+		$(document).ready(function(){
+			$('input.searchType').on('change',function(){
+				searchType = $(this).val();
+			});
+		});
+		
+		<!-- load_merchandise_item(false,0); -->
+	{/literal}
+	</script>

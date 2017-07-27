@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+{$meta}
+<body>
+  <div id="body">
+    <div id="page">
+      {if $pages != 'login' && $pages != 'logout'}
+      {*}
+      <div id="sidebar">
+        <div id="navbar">
+            <ul>
+   
+                <li><a href="{$basedomain}home" {if $pages == 'home'}class="active"{/if}><span class="icon-dashboard">&nbsp;</span> Projects</a></li>								
+				<li><a href="{$basedomain}reports" {if $pages == 'reports'}class="active"{/if}><span class="icon-dashboard">&nbsp;</span> Report </a></li>
+				{if  $type_user eq '666'}
+				<li><a href="{$basedomain}users" {if $pages == 'users'}class="active"{/if}><span class="icon-users">&nbsp;</span>Manage Users</a></li>
+                {/if}
+				
+               
+                <li><a href="{$basedomain}projects" {if $pages == 'projects'}class="active"{/if}><span class="icon-books">&nbsp;</span> Projects</a></li>
+                <li><a href="{$basedomain}users" {if $pages == 'users'}class="active"{/if}><span class="icon-users">&nbsp;</span> Users</a></li>
+                <li><a href="{$basedomain}reports" {if $pages == 'reports'}class="active"{/if}><span class="icon-bars">&nbsp;</span> My Data</a></li>
+                <li><a href="{$basedomain}settings" {if $pages == 'settings'}class="active"{/if}><span class="icon-cog">&nbsp;</span> Settings</a></li>
+                
+              </ul>
+          </div>
+      </div><!-- end #sidebar -->
+      {/*}
+		  {$header}
+      {/if}
+        <div id="thecontent">
+             {$mainContent}
+        </div><!-- /#thecontent -->
+		  {$footer}
+    </div><!-- end #page -->
+  </div><!-- end #body -->    
+</body>
+</html>

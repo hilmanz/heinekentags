@@ -1,0 +1,96 @@
+<div class="page_section" id="home">
+    <div id="homeBanner">
+        <div id="bannerwrapper">
+		
+            <div class="flexslider">
+              <ul class="slides">
+			    {if $list}
+				{section name=i loop=$list} 
+					
+                	<li>
+						{section name=j loop=$list[i]} 
+						{if $list[i][j].numbr%2==1}
+							<div class="box">
+							
+								{assign var=randomindex value=$animasiclass|@array_rand} 
+								<div class="imgbox {$animasiclass.$randomindex} animated  "><img src="{$list[i][j].images_thumb}" /></div>
+								<div class="imgcaption">
+									<div class="thumbuser"><img src="{$list[i][j].profile_picture}" /></div>
+									<a href="#">@{$list[i][j].username}</a>
+								</div><!-- end .imgcaption -->
+							</div><!-- end .box -->
+						{else}
+							<div class="box">
+							
+								{assign var=randomindex value=$animasiclass|@array_rand} 
+								<div class="imgbox {$animasiclass.$randomindex}animated"><img src="{$list[i][j].images_thumb}" /></div>
+								<div class="imgcaption">
+									<div class="thumbuser"><img src="{$list[i][j].profile_picture}" /></div>
+									<a href="#">@{$list[i][j].username}</a>
+								</div><!-- end .imgcaption -->
+							</div><!-- end .box -->
+						{/if}
+                    	{/section}
+                    </li>
+                	{/section}
+				{/if}	
+              </ul>
+            </div><!-- end .flexslider -->
+        </div> <!-- end #bannerwrapper -->
+    </div><!-- end #homeBanner -->
+</div><!-- end #home -->
+<script>
+var basedomain="{$basedomain}";	
+{literal}
+setInterval(function(){
+tarik();
+
+
+
+}, 10000);
+function tarik()
+{
+	var items = Array('fadeInLeft','fadeInDown','fadeInRight','fadeInUp');
+	 $.ajax({
+				'type': 'POST',
+				'url': basedomain+'home/ajaxPaging',
+				'dataType':'json',
+				'success': function(result){
+							var str="";
+							str +='<div class="flexslider">' ;
+							str +=' <ul class="slides">';
+						$.each(result.data,function(k,v){
+							str +='<li>';
+							$.each(v,function(kx,vx){
+							
+								
+									str +='<div class="box">';
+									str +='<div class="imgbox '+items[Math.floor(Math.random()*items.length)]+' animated  "><img src="'+vx.images_thumb+'" /></div>';
+									str +='<div class="imgcaption">';
+									str+='<div class="thumbuser"><img src="'+vx.profile_picture+'" /></div>';
+									str+='<a href="#">@'+vx.username+'</a>';
+									str+='</div>';
+									str+='</div>';
+								
+								
+							});
+							str +='</li>';
+							
+						});
+							str +="</ul>";
+							str +="</div>";
+						$('#bannerwrapper').html(str);
+						 $('.flexslider').flexslider({
+							animation: "fade",
+							controlNav: false,              
+							directionNav: false,          
+							slideshowSpeed: 3000,        
+							animationSpeed: 600,  
+						  });
+					}
+			});
+
+}
+
+{/literal}
+</script>

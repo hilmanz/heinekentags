@@ -1,0 +1,127 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span>Edit Templates</h2> 
+        </div><!-- end .titlebox -->
+        <div class="content"> 
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent designProject">
+                <section class="step1">
+                    <h3>Templates Update</h3>
+					{foreach from=$load key=key item=v}
+					<div class="row">
+                        <label for="bgPotrait">Background Potrait<br></label>
+                        <input id="bgPotrait" name="bgPotrait" type="file" />
+                        <input name="bgPotraitold" type="hidden" value="{$v.loginbackground[0].potrait}"/>
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/login/potrait/{$v.loginbackground[0].potrait}">
+                    </div><!-- end .row -->  				
+					<div class="row">
+                        <label for="bgLandscape">Background Landscape<br></label>
+                        <input id="bgLandscape" name="bgLandscape" type="file" />
+                        <input name="bgLandscapeold" type="hidden" value="{$v.loginbackground[0].landscape}"/>
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/login/landscape/{$v.loginbackground[0].landscape}">
+					</div><!-- end .row -->
+					<div class="row">
+                        <label for="tqpotrait">Thankyou Potrait<br></label>
+                        <input id="tqpotrait" name="tqpotrait" type="file" />
+                        <input name="tqpotraitold" type="hidden" value="{$v.thanksbackground[0].potrait}" />
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/thanks/potrait/{$v.thanksbackground[0].potrait}">
+					</div><!-- end .row -->					
+					<div class="row">
+                        <label for="tqlandscape">Thankyou Landscape<br></label>
+                        <input id="tqlandscape" name="tqlandscape" type="file" />
+                        <input name="tqlandscapeold" type="hidden" value="{$v.thanksbackground[0].landscape}" />
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/thanks/landscape/{$v.thanksbackground[0].landscape}">
+						
+					</div><!-- end .row -->		
+					<div class="row">
+					 <label for="login_type">Login Type<br></label>
+						<select name="login_type">
+							<option value="" {if $v.login_type==''} selected {/if}> - </option>
+							<option value="2" {if $v.login_type==2} selected {/if}>Twitter</option>
+							<option value="1" {if $v.login_type==1} selected {/if}>Facebook </option>
+							<option value="3" {if $v.login_type==3} selected {/if}>Local</option>
+						</select>
+					</div>
+					{*}
+					{if $user->type==666}
+					<div class="row">
+					 <label for="client_type">Client<br></label>
+						<select name="client_type"> 
+							{foreach from=$clientname name=k item=val} 
+								{if $v.userid==''}
+								<option value="" selected > - </option>
+								{else}
+								<option value="{$val.id}" {if $v.userid==$val.id} selected {/if} >{$val.name}</option> 
+								{/if}
+							{/foreach}
+						</select>
+					</div>	
+					{else}
+						<input type="hidden" name="client_type" value="{$user->id}">
+					{/if}	
+					{/*}					
+					<div class="row">
+                        <label for="redirecturi">Redirect URI<br></label>
+                        <input id="redirecturi" name="redirecturi" type="text" value="{$v.redirect_url}" />
+                    </div><!-- end .row -->	
+						<input type="hidden" name="templateid" value="{$v.id}">
+					{/foreach}
+					<label class="msg_name" style="color: red;" ></label>
+                    <div class="row row-submit">
+						<input type="hidden" name="submit" value="1">
+						<input type="submit" value="SAVE" class="button3 submitreg"  /> 
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end .designProject -->
+              <div id="demo-iphone">
+            	<img src="{$basedomain}assets/images/iphone5.png" />
+                <div id="backgroundApps">
+				  <img class="bg_home" src="{$app_assets}content/home/{$data.home.values}"/>
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+              
+                </div>
+                <div id="backgroundThanks">
+                <img src="{$basedomain}assets/images/thankyou.png" />
+                </div>
+                <div id="buttonLogin">
+                <img src="{$basedomain}assets/images/login-fb.png" />
+                </div>
+            </div><!-- end .demo-iphone -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+{*}
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+    $('.submitreg').click(function () 
+    { 
+	 
+        var imgVal = $('#bgPotrait').val(); 
+        var imgVal2 = $('#bgLandscape').val(); 
+        var imgVal3 = $('#tqpotrait').val(); 
+        var imgVal4 = $('#tqlandscape').val(); 
+        
+		if(imgVal==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal2==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal3==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal4==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else{
+			return true;
+		}
+		
+        return false; 
+
+    }); 
+});
+ 
+</script> 
+{/literal}  
+{/*}

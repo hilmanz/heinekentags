@@ -1,0 +1,33 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Regulation Shinkenjuku Default Dynamic Contect</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+              
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+            
+			  {if $list}
+				{section name=i loop=$list}    
+					<div class="pagilist">
+						<h3>{$list[i].title}</h3>
+						<img  src="{$basedomain}public_assets/regulation/{$list[i].img}" height="42" width="42" style="display: inline; margin: 0px 7px 0px 0px; border: solid 1px #eee; float: left" >{$list[i].description}
+						</div><br><br>
+						{/section}
+				{/if}		
+						
+           
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_regulation_list","paging_ajax_regulation",10);
+	var userid = {$user->id};
+</script>

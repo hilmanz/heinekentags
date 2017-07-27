@@ -1,0 +1,78 @@
+<div id="home" class="mainContent">
+	<div class="col-12">
+    	<div class="mainSlider">
+        	<div class="flexslider">
+              <ul class="slides">
+			   {if $listBanner}
+					{section name=i loop=$listBanner}  
+						<li>
+						 <a href="{$listBanner[i].url}"> <img src="{$basedomain}assets/content/slide/slide1.jpg" /> </a>
+						</li>
+					{/section}
+				{/if}	
+              </ul><!--end.slides-->
+            </div><!--end.flexslider-->
+        </div><!--end.mainSlider-->
+        <div class="rows">
+        	<div class="boxContent">
+            	<div class="introText">
+                	<h2>About Shinkenjuku</h2>
+                    <p><span class="kutip1"></span>Shinkenjuku adalah metode pembelajaran dari Jepang dengan dasar pemikiran bahwa mengerti Matematika itu menyenangkan. Siswa diajak untuk belajar lebih riang, sehingga kemampuan berpikirnya pun berkembang. Dengan semangat,  "Aku Pasti Bisa!" anak pasti dapat menyelesaikan setiap soal Matematika dengan cara yang lebih menyenangkan.<span class="kutip2"></span></p>
+                    <a href="#" class="seeMore">See More</a>
+                </div><!--end.introText-->
+            </div><!--end.boxContent-->
+        </div><!--end.rows-->
+        <div class="rows">
+        	<div class="col-left menuHome">
+            	<div class="contentMenu">
+                	<div class="bigMenu">
+                    	<a href="#" class="systemMenu firstChild">System</a>
+                    </div>
+                    <div class="bigMenu">
+                    	<a href="#" class="sampleBook">Sample Book</a>
+                    </div>
+                    <div class="bigMenu">
+                    	<a href="#" class="registraionMenu">Registration</a>
+                    </div>
+                </div><!--end.contentMenu-->
+            </div><!--end.col-left-->
+            <div class="col-center newsHome">
+                <div class="boxContent">
+            		<div class="newsHighlights">
+                    	<div class="tittle">
+                        	<h2>News & Updates</h2>
+                        </div>
+						 {if $list}
+							 {section name=i loop=$list}  
+							<div class="newsFlash">
+								<div class="newsImage">
+									<img src="{$basedomain}assets/content/news/news1.jpg" />
+								</div>
+								<div class="newsText">
+									<h4 class="titleFlash">{$list[i].title}</h4>
+									<span class="dateNews">2014/08/09</span>
+									<p class="flashText">{$list[i].content}<a class="seeMore" href="{$basedomain}news/contentview_news?id={$list[i].id_news}">See More</a></p>
+								</div>
+							</div><!--end.newsFlash-->
+							{/section}
+						{/if}	
+                	</div><!--end.newsHighlights-->
+                </div><!--end.boxContent-->
+            </div><!--end.col-3-->
+            <div class="col-right">
+            	<a href="#" class="readMangaImage">
+                	<img src="{$basedomain}assets/images/read-manga.jpg"  />
+                </a>
+            </div><!--end.col-3-->
+        </div><!--end.rows-->
+    </div><!--end.col-12-->
+</div><!--end.mainContent-->
+{literal}
+<script>
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide"
+  });
+});
+{/literal}
+</script>

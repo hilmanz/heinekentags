@@ -1,0 +1,69 @@
+
+<div class="row rowBlack">
+</div><!-- /.rowBlack -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+          <table class="table table-bordered table-hover table-striped tablesorter">
+            <thead>
+              <tr class="orange">
+                <th width="80" class="center"><h3><span class="icons icon-text">&nbsp;</span></h3></th>
+                <th colspan="5"><h3>Touchbase</h3></th>
+              </tr>
+              <tr>
+                <th class="center" width="80"><h3><span>No</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>Register Date</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>Name</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>Email</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>Phone Number</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>FB ID</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>TWITTER ID</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>INSTAGRAM ID</span> <i class="fa fa-sort"></i></h3></th>
+                <th><h3><span>Photo</span> <i class="fa fa-sort"></i></h3></th>
+              </tr>
+            </thead>
+            <tbody class="pagingenotourage">
+              	{foreach from=$list key=k item=val  }
+				<tr>
+					<td class="center">{$val.no}</td>
+					<td>{$val.register_date}</td>
+					<td>{$val.name}</td>
+					<td>{$val.email}</td>
+					<td>{$val.phone_number}</td>
+					<td>{$val.facebookID}</td>
+					<td>{$val.twitterID}</td>
+					<td>{$val.instagramID}</td>
+					<td>
+						{if $val.images==''}
+							<img height="100px" width="100px" src="{$basedomainpath}public_assets/contests/default.jpg" />
+						{else}
+							<img height="100px" width="100px" src="{$basedomainpath}public_assets/contests/{$val.images}" />
+						{/if}						
+					</td>
+				</tr>
+				{/foreach} 
+             
+              <tr>
+            </tbody>
+          </table>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+     <ul class="pagination" id="pagingajaxlist" ></ul><!-- /.pagination -->
+  </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
+<script>
+		
+getpaging(0,{$total},"pagingajaxlist","paging_entourage_report",20);
+
+		var startdate = "{$startdate}";
+		var enddate = "{$enddate}";
+		var search = "{$search}";
+		var publishedtype = "{$publishedtype}";
+		{literal}
+			$(document).on('change','#publishedtype',function(){
+				$(".formsubmitmanualmoderation").submit();
+			})
+</script>
+				{/literal}

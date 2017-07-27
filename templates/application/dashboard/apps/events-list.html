@@ -1,0 +1,43 @@
+<div class="page_section" id="events-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span>Project Events</h2>
+            <h2 class="fr"><a href="{$basedomain}projects/event?id={$id}" class="button2">Add New</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">Event Name</th> 
+					<th class="head0">Action</th>
+				</tr>
+			</thead>
+			<tbody class="pagingevent">
+			{foreach from=$list key=key item=val}
+			{if $val.name==""||$val.id==""}
+					<tr>
+						<td colspan="3">Data Empty</td>
+					</tr>
+			{else}
+					<tr>
+						<td width="1">{$val.no}</td>
+						<td><a href="#">{$val.name}</a></td> 
+						<td>  
+                        	<a href="{$basedomain}projects/editevent?id={$val.id}&brand={$val.brand}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>  
+							<a href="javascript:void(0)" class="button" onClick="confirmation('{$basedomain}projects/eventdelete?id={$val.id}','Confirm to Delete?')"><span class="icon-trash">&nbsp;</span> Delete</a>
+                        </td>
+					</tr> 
+			{/if}
+			{/foreach}
+			</tbody>
+			</table>
+			<div class="paging" id="pagingajaxlist"></div> 
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script>
+	getpaging(0,{$total},"pagingajaxlist","paging_event_list",5);
+</script>
+

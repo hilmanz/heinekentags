@@ -1,0 +1,102 @@
+<div class="page_section" id="dashboard-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-dashboard">&nbsp;</span>Report</h2>
+            <h2 class="fr"><a href="javascript:void(0);" onclick="downloadreport()" class="button2"><span class="icon-download">&nbsp;</span></a></h2>            
+        </div><!-- end .titlebox -->
+      <div class="content">  
+        <div class="row-shorter"> 
+			<form method="GET" action="{$basedomain}reports" id="filterform"> 
+			{if  $user->type==666}
+            <div class="shorter fl">
+                <span class="fl">Name</span>
+				
+				
+					<select name='brandid' class='selectEvent fl submitter'> 
+					<option value="" >-- Select --</option>
+						{foreach from=$brandlist key=kek item=v}
+							<option name="{$v.id}" value="{$v.id}" >{$v.name}</option>
+						{/foreach} 
+					</select>
+            </div>
+			{else}
+			<div></div>
+			{/if}
+            <div class="shorter fr" id="datePick">
+                    <span class="fl">Date Range</span>
+                    <div class="rows fl">
+                        <input type="text" name="startdate" class="datepicker startdate " id="dp1403509217274">
+                    </div><!-- /.rows -->
+					
+                    <span class="fl">To</span>
+                    <div class="rows fl">
+                        <input type="text"  name="enddate" class="datepicker submitter enddate " id="dp1403509217275">
+                    </div><!-- /.rows -->
+			</div>
+        </div><!-- end .row-shorter -->
+        
+					
+		  <table cellpadding="0" cellspacing="0" border="0">
+		  <thead>
+			<tr>
+			  <th class="head0">No</th>
+			  <th class="head0">Brand</th> 
+			  <th class="head0">Name</th>
+			  <th class="head0">Fb Id</th>
+			  <th class="head0">Twitter Id</th> 
+			  <th class="head0">Photo</th> 
+			  <!-- <th class="head0">Age</th>  
+			  <th class="head0">Location</th> -->
+			  <th class="head0">Collect Date</th> 
+			</tr>
+		  </thead>
+		  <tbody class="paginglist"> 		 
+		  {foreach from=$reportquerylist key=k item=val  }
+			<tr>
+			  <td class="center">{$val.no}</td>
+						 <td>{$val.brand}</td>
+						
+			  <td>{$val.first_name} {$val.middle_name} {$val.last_name}</td>
+			  <td>{if $val.fb_id==''}-{else}{$val.fb_id}{/if}</td>
+			  <td><a href="https://twitter.com/{$val.twitter_id}" target="_blank">{$val.twitter_id}</a></td>
+			  <td> 
+					<!-- <img height="55px" width="55px" src="{$basedomainpath}public_html/public_assets/reports/default.png" /> --> 
+					{if $val.fb_id}
+					<img height="55px" width="55px" src="https://graph.facebook.com/{$val.fb_id}/picture?width=140&height=140" />  
+					{else}
+					<img height="55px" width="55px" src="https://graph.facebook.com/12/picture?width=140&height=140" /> 
+					{/if}
+			  </td>
+			 <!-- <td>{$val.age}</td>
+			  <td>{$val.location}</td>	-->				   
+			  <td>{$val.codate}</td>
+			</tr> 
+			{/foreach}  
+		  </tbody>
+		  </table>
+           <div id="pagingreportlist" class="paging"></div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home --> 
+
+<script> 
+getpaging(0,{$total},"pagingreportlist","paging_report_pages",10);
+{literal} 	
+	$(document).on('change','.submitter', function(){
+	
+		$("#filterform").submit();
+	
+	})
+	
+	function downloadreport(){
+	 
+		if(window.location.search.match(/download=report/)){
+			window.location =window.location.reload();
+		}else{
+			window.location =window.location.href+'&download=report';
+		}
+		
+	} 
+	
+</script>
+{/literal}

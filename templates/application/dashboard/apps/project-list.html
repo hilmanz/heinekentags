@@ -1,0 +1,38 @@
+<div class="page_section" id="project-list">
+	 <div id="container">
+     	<div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span>Active Projects</h2>
+            <h2 class="fr">{if $user->type==666 }<a href="{$basedomain}home/addnewtemplates" class="button2">Add New</a>{/if}</h2>
+        </div><!-- end .titlebox -->
+			<div class="content">
+   <table class="table table-bordered table-hover tablesorter">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <th>No</th>
+                    <th>Project </th>
+                    <th>User  </th>
+                    <th>Action</th> 
+                  </tr>
+                </thead>
+                <tbody class="pagingtemplates">
+				{foreach from=$listoftemplates key=key item=val}
+                  <tr>
+                    <td>{$val.no}</td>
+                    <td>{$val.brand}</td>
+                    <td>{$val.name}</td>
+                    <td>						
+						<a href="{$basedomain}home/edit?id={$val.id}" class="btn btn-link" >Edit</a>{if $user->type==666 }
+						| <a href="{$basedomain}home/hapus?id={$val.id}" class="btn btn-link" >Delete</a>{/if}
+					</td>
+				  </tr>
+				{/foreach}
+                </tbody>
+              </table>        
+  <div class="paging" id="pagingajaxlist"></div> 
+   </div><!-- end .content -->
+ </div><!-- end #container -->
+</div><!-- /.page_section -->  
+
+<script>
+	getpaging(0,{$total},"pagingajaxlist","paging_ajax_userreg",5);
+</script>  

@@ -1,0 +1,56 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Add New Project</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+                <p>Touchbase Content Management System helps you to overview all your projects and events with ease. Add your new project to start. </p>
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>Project Name</h3>
+                    <p>Fill in the details below to submit your new project.</p>
+                    <div class="row">
+                        <label for="projectName">Project name<br></label>
+                        <input id="projectName" name="projectName" type="text" class="required" value={$status.pr}><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+                    <div class="row">
+                        <label for="uname">Name </label>
+                        <input id="uname" name="name" type="text" class="required" value={$status.name}>
+						 <small class="msg_name" style="color: red;">{$status.msgn}</small>
+                    </div><!-- end .row -->
+                    <div class="row">
+                        <label for="userName">User name/Email</label>
+						
+                        <input id="userName" name="userName" type="text" class="required" value={$status.email}>
+                   		<small class="msg_name" style="color: red;">{$status.msge}</small>
+				 </div><!-- end .row -->
+                    <div class="row">
+                        <label for="password">Password *<br></label>
+                        <input id="password" name="password" type="password" class="required">
+					
+                    </div><!-- end .row -->
+                    <div class="row">
+                        <label for="confirm">Confirm Password *</label>
+						
+                        <input id="confirm" name="confirm" type="password" class="required">
+						<small class="msg_name" style="color: red;">{$status.msgp}</small><br>
+						<span for="ss">* The password must contain at least 6 characters, 1 upper case and lower case and special character.</span>
+                    </div><!-- end .row -->
+                    <div class="row row-submit">
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

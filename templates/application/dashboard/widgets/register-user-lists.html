@@ -1,0 +1,101 @@
+{literal}
+<style>
+#selectfid{width:170px}
+#selectfidbrand{width:170px}
+#selectfidarea{width:170px}
+#selectfidpl{width:170px}
+#selectfidba{width:170px}
+</style>
+{/literal}
+<div class="row">
+    <div class="panel-primary">
+      <div id="userList" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>User List</h2>
+            	<div class="searchList">
+                   <input type="text" size="16" name="search" id="search" class="span2" onfocus="if(this.value=='Search...')this.value='';" onblur="if(this.value=='')this.value='Search...';" value="{if $search}{$search}{else}Search...{/if}">
+                                <button type="submit" class="btn btnSearch">GO</button>
+                       	{*}<input id="search" class="fr" type="text" name="search" value="" placeholder="search">{/*}
+                </div>
+            </div>
+
+                         
+                    <div class="theBox-content">
+                        <div class="userList">
+							 <table class="table table-bordered table-hover table-striped tablesorter">
+                                <thead>
+                                  <tr>
+                                    <th class="center" width="80"><h3><span>No</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Name</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Email</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Role</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Area</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Brand</span> <i class="fa fa-sort"></i></h3></th>
+                                    <th><h3><span>Action</span> <i class="fa fa-sort"></i></h3></th>                                  </tr>
+                                </thead>
+                                <tbody class="pagingenotourage">
+                                    <tr>
+                                        <td class="center">1</td>
+                                        <td>Katty Perry</td>
+                                        <td>katty@gmail.com</td>
+                                        <td>Admin</td>
+                                        <td>Jakarta</td>
+                                        <td>Marlboro</td>
+                                        <td>Delete</td>
+                                    </tr>
+                                 
+                                  <tr>
+                                </tbody>
+                              </table>
+							<div class="paging" id="paging_of_user_list"></div> <!-- END .paging -->
+						
+                        </div> <!-- /.forms -->
+                       	<a class="Btn button reg-button fr" href="{$basedomain}register/doregister" >REGISTER</a>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+<script type="text/javascript">
+{literal}
+	var user={};
+	user.orderType='ASC';
+	user.orderBy='name';
+	user.search="";
+	var brand=0;
+	$(document).ready(function(){
+		get_list_of_user(user,0);
+	});
+
+	$('#search').keypress(function(e) {
+	    if(e.which == 13) {
+	    	user.search=$(this).val();
+	        get_list_of_user({},0);
+	    }
+	});
+	$('.btnSearch').on('click',function(e) {
+	
+			if($("#search").val().length > 0 && $("#search").val()!='Search...' )
+			{
+				
+				user.search=$("#search").val();
+				
+				get_list_of_user({},0);
+			}
+	});
+	$('#search').change(function(e) {
+	    if($(this).val()=="") {
+	    	user.search="";
+	        get_list_of_user({},0);
+	    }
+	});
+	$('a.sort').on('click',function(){
+		user.orderBy=$(this).data('sorter');
+		user.orderType=((user.orderType=='ASC')?'DESC':'ASC');
+		if(user.orderBy=='brand'){
+			if(brand==0) user.orderBy='brandid';
+			else user.orderBy='brandsubid';
+		}
+		
+		get_list_of_user({},0);
+	});
+{/literal}
+</script>

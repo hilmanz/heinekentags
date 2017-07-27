@@ -1,0 +1,354 @@
+
+<div class="row rowBlack">
+{include file="application/dashboard/widgets/shorter.html"}
+<div class="tittle-row">
+	<p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Pie Chart Based On registrant</span></p>
+</div>
+ <div class="clear">
+		<div class="col-lg-3">
+        <div class="panel">
+            <div class="row">
+                <div id="morris-chart-donut-age"></div>
+                <p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Age</span></p>
+            </div><!-- /.row -->
+        </div><!-- /.panel -->
+      </div><!-- /.col-lg-3 -->
+      <div class="col-lg-3">
+        <div class="panel">
+            <div class="row">
+                <div id="morris-chart-donut-brandPref"></div>
+                <p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Brand Favorite</span></p>
+            </div><!-- /.row -->
+        </div><!-- /.panel -->
+      </div><!-- /.col-lg-3 -->
+      <div class="col-lg-3">
+        <div class="panel">
+            <div class="row">
+                <div id="morris-chart-donut-sex"></div>
+                <p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Sex (MALE/FEMALE)</span></p>
+            </div><!-- /.row -->
+        </div><!-- /.panel -->
+      </div><!-- /.col-lg-3 -->
+      <div class="col-lg-3">
+        <div class="panel">
+            <div class="row">
+                <div id="morris-chart-donut-status"></div>
+                <p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Status</span></p>
+            </div><!-- /.row -->
+        </div><!-- /.panel -->
+      </div><!-- /.col-lg-3 -->
+      
+  </div><!-- /.clear -->
+</div><!-- /.rowBlack -->
+{*}
+<div class="row rowBlack">
+<div class="tittle-row">
+	<p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Bar Chart Status Registrant Based On AREA</span></p>
+</div>
+ <div class="clear">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+		<div id="entourage-charts" style="min-width: 400px; height: 400px; margin: 0 auto;"></div><br />
+        <a style="color:#FCA31D;" href="#" class="fr">See All</a>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+  </div><!-- /.col-lg-12 -->
+  </div><!-- /.clear -->
+</div><!-- /.rowBlack -->
+{/*}
+<div class="row rowBlack">
+<div class="tittle-row">
+	<p class="announcement-text"><span class="icons icon-pie">&nbsp;</span><span class="labeltext">Bar Chart Status Registrant Based On AREA</span></p>
+</div>
+ <div class="clear">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+		<div id="accRej-chart" style="min-width: 400px; margin: 0 auto"></div><br />
+        <!-- <a style="color:#FCA31D;" href="#" class="fr">See All</a> -->
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+  </div><!-- /.col-lg-12 -->
+  </div><!-- /.clear -->
+</div><!-- /.rowBlack -->
+
+<script>
+
+var young = "{$enturagereportAge.young}"
+var mature = "{$enturagereportAge.mature}"
+var olde = "{$enturagereportAge.olde}"
+
+/* hitung persentase age */
+var young = parseFloat(young);
+var mature =  parseFloat(mature);
+var olde = parseFloat(olde);
+var allage  = parseFloat(young + mature + olde);
+
+var young = ((young/allage) * 100 ).toFixed(2) ;
+var mature = ((mature/allage) * 100 ).toFixed(2) ;
+var olde = ((olde/allage) * 100 ).toFixed(2) ;
+
+
+var male = "{$genderPref.M}"
+var female = "{$genderPref.F}"
+/* hitung persentase gender */
+var male = parseInt(male);
+var female = parseInt(female);
+var countSex = parseInt(male + female);
+var male = (male/countSex*100).toFixed(2);
+var female =  (female/countSex*100).toFixed(2);
+
+
+var approve = "{$new_registrant_count.total}"
+var rejected = "{$rejectedregistrant.total}"
+var pending = "{$pendingregistrant.total}"
+/* hitung persentase status */
+var approve = parseInt(approve);
+var rejected = parseInt(rejected);
+var pending = parseInt(pending); 
+var countApproval = parseInt(approve + rejected + pending);
+var approve =  (approve/countApproval*100).toFixed(2);
+var rejected =  (rejected/countApproval*100).toFixed(2);
+var pending =  (pending/countApproval*100).toFixed(2); 
+
+var Our = "{$brandPref.Our}"
+var Competitor = "{$brandPref.Competitor}"
+var PMI = "{$brandPref.PMI}"
+/* hitung persentase brand */
+var Our = parseInt(Our);
+var Competitor = parseInt(Competitor);
+var PMI = parseInt(PMI);
+var countBrand = parseInt(Our + Competitor + PMI);
+var Our = (Our/countBrand*100).toFixed(2);
+var Competitor = (Competitor/countBrand*100).toFixed(2);
+var PMI =(PMI/countBrand*100).toFixed(2);
+
+var regitrantcitypending = {$locationRegistrnt.cityid[0]|@json_encode}
+var regitrantcityapprove = {$locationRegistrnt.cityid[1]|@json_encode}
+var regitrantcityreject = {$locationRegistrnt.cityid[2]|@json_encode}
+var totalregistrantpending = {$locationRegistrnt.total[0]|@json_encode}
+var totalregistrantapprove = {$locationRegistrnt.total[1]|@json_encode}
+var totalregistrantrejected = {$locationRegistrnt.total[2]|@json_encode}
+	
+{literal}
+var pendingRegister = new Array();
+var approveRegister = new Array();
+var rejectedRegister = new Array();
+var labelArray = new Array();
+
+for (var pendingData in totalregistrantpending){
+	pendingRegister.push(parseInt(totalregistrantpending[pendingData]));
+}
+
+for (var approveData in totalregistrantapprove){
+	approveRegister.push(parseInt(totalregistrantapprove[approveData]));
+}
+
+for (var rejectedData in totalregistrantrejected){
+	rejectedRegister.push(parseInt(totalregistrantrejected[rejectedData]));
+}
+
+if(regitrantcityapprove!=null){
+	for (var labelname in regitrantcityapprove){
+		labelArray.push(String(regitrantcityapprove[labelname]));
+	}
+}else if(regitrantcitypending!=null){
+	for (var labelname in regitrantcitypending){
+		labelArray.push(String(regitrantcitypending[labelname]));
+	}
+}else if(regitrantcityreject!=null){
+	for (var labelname in regitrantcityreject){
+		labelArray.push(String(regitrantcityreject[labelname]));
+	}
+}
+
+
+Morris.Donut({
+  element: 'morris-chart-donut-age',
+  data: [
+     {label: "18 - 24", value: young},
+    {label: "25 - 29", value:mature},
+    {label: "30 - above", value: olde}
+  ],
+  labelColor: '#FFF',
+  colors:['#8a898c','#fff','#bdbcbd','#d0cfd2'],
+  formatter: function (y) { return y + "%" ;}
+});
+
+Morris.Donut({
+  element: 'morris-chart-donut-brandPref',
+  data: [
+    {label: "Our", value: Our},
+    {label: "Competitor", value: Competitor},
+	{label: "PMI", value: PMI}, 
+  ],
+  labelColor: '#FFF',
+  colors:['#8a898c','#a0a0a1','#bdbcbd','#d0cfd2'],
+  formatter: function (y) { return y + "%" ;}
+});
+Morris.Donut({
+  element: 'morris-chart-donut-sex',
+  data: [
+		{label: "Male", value: male},
+		{label: "Female", value: female},
+  ],
+  labelColor: '#FFF',
+  colors:['#8a898c','#a0a0a1','#bdbcbd','#d0cfd2'],
+  formatter: function (y) { return y + "%" ;}
+});
+Morris.Donut({
+  element: 'morris-chart-donut-status',
+  data: [
+    {label: "Accept", value: approve},
+    {label: "Pending", value: pending},
+	{label: "Reject", value: rejected},
+  ],
+  labelColor: '#FFF',
+  colors:['#8a898c','#a0a0a1','#bdbcbd','#d0cfd2'],
+  formatter: function (y) { return y + "%" ;}
+});
+
+//bar accepeted rejected--*
+$(function () {
+			var max_val = Math.max(rejectedRegister.length,approveRegister.length,pendingRegister.length);
+			var height = max_val*100;
+        $('#accRej-chart').highcharts({
+            chart: {
+                type: 'bar',
+				height:height,
+				backgroundColor: '#424242'
+            },
+            title: {
+                text: 'Entourage',
+				style: {
+					color: '#fe9d0c'
+				}
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: labelArray,
+                title: {
+                    text: null
+                },
+				 labels: {
+					 style: {
+						color: '#FFF'
+					 }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title:false,
+                labels: {
+                    overflow: 'justify',
+					 style: {
+						color: '#FFF'
+					 }
+                }
+            },
+            tooltip: {
+                valueSuffix: '',
+				shadow:false
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -30,
+                y: 0,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: false,
+				borderColor: '#FCA31D',
+				itemStyle:{'color':'#666'}
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Approved',
+                data: approveRegister,
+				color:'#fe9d0c'
+            }, {
+                name: 'Rejected',
+                data: rejectedRegister,
+				color:'#00abeb'
+            },{
+                name: 'Pending',
+                data: pendingRegister,
+				color:'#e21010'
+            }]
+        });
+    });
+    
+	
+	/*
+$(function () {
+        $('#entourage-charts').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Entourage',
+            },
+            subtitle:false,
+            xAxis: {
+                categories: regitrantcityid,
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title:false,
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' '
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    },
+					color:'#FCA31D'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -100,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Entourage',
+                data:totalregistrant
+            }]
+        });
+    });
+*/
+
+
+</script>
+{/literal}

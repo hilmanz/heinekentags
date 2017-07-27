@@ -1,0 +1,191 @@
+{literal}
+<style>
+#selectfid{width:170px}
+#selectfidbrand{width:170px}
+#selectfidarea{width:170px}
+#selectfidpl{width:170px}
+#selectfidba{width:170px}
+</style>
+{/literal}
+
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-user">&nbsp;</span>User Registration</h2>
+            <h2 class="fr"><a href="{$basedomain}users" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+          <div class="summary">
+              <p>Only an authorized administrator is allowed to add certain people that will use this application at the events or to overview projects.</p>
+            </div><!-- end .summary -->
+
+      <form method="POST" action="" enctype="multipart/form-data" id="registerent" class="forms" >
+            <div id="user-registration" class="boxcontent">
+                <section>
+                  <div class="row">
+                        <label class="msg" style="color:green;display:none;"></label>
+                  </div><!-- end .row -->
+                 {if $type_user eq '666'}
+               
+				 
+				 <div class="row">
+                        <label class="msg_role" style="color:red;display:none;"></label>
+                  </div><!-- end .status -->
+				  
+                  <div class="row">
+                        <label for="">Brand</label>
+                        <input name="brandsubid" type="text" class="required" >
+                       <input name="role" value='1' type="hidden" class="required" >
+                  </div>
+                
+				  <div class="row">
+                        <label class="msg_brand" style="color:red;display:none;"></label>
+                  </div><!-- end .status -->
+				  {/if}
+                  
+                	  
+				  <div class="row">
+                        <label for="">Name</label>
+                        <input name="name" type="text" class="required">
+                  </div><!-- end .row -->
+				  <div class="row">
+                        <label class="msg_name" style="color:red;display:none;"></label>
+                  </div><!-- end .status -->
+				  
+				  
+				   
+				 <div class="row">
+                        <label for="">City</label>
+                        <select name="city" >
+						<option value="aa">Pick City</option>
+                            {foreach from=$cityList key=k item=v}
+                             
+                             <option value="{$v.id}" > {$v.city} </option>
+                          
+                            {/foreach}
+                        </select>
+                  </div><!-- end .row -->
+				  
+				  
+                  <div class="row">
+                        <label for="">Username</label>
+                        <input name="username" value="{$selectupdatedata.username}" type="text" class="required">
+                  </div><!-- end .row -->
+				  <div class="row">
+                        <label class="msg_username" style="color:red;display:none;"></label>
+                  </div><!-- end .status -->
+				  
+				     <div class="row">
+                        <label for="">Start Date</label>
+                        <input name="startdate"  type="text" class="datepicker required" style="width: 200px;">
+                  </div><!-- end .row -->
+				    <div class="row">
+                        <label class="msg_startdate" style="color:red;display:none;"></label>
+                  </div><!-- end .status -->
+				     <div class="row">
+                        <label for="">End Date</label>
+                        <input name="enddate"  type="text" class="datepicker required" style="width: 200px;">
+                  </div><!-- end .row -->
+				    <div class="row">
+                        <label class="msg_enddate" style="color:red;display:none;"></label>
+                  </div><!-- end .status -->
+                  <div class="row">
+                        <label for="password">Password *</label>
+                        <input id="password" name="password" type="password" class="required" value="">
+                  </div><!-- end .row -->
+                  <div class="row">
+                        <label for="confirm">Confirm Password *</label>
+                        <input id="confirm" name="repassword" type="password" class="required" value="">
+						  <div class="row">
+                        <span class="msg_password" style="color:red;display:none;"></span>
+                        <span class="msg_password1" style="color:red;display:none;"></span>
+                  </div><!-- end .status --><br>
+						<div class="row">
+						<span for="ss">* The password must contain at least 6 characters, 1 upper case and lower case and special character.</span>
+						</div>
+                  </div><!-- end .row -->
+				
+                  <div class="row row-submit">
+                        <label for="">&nbsp;</label>
+                      <input type="hidden"  name="submit" value="1">
+                        <a href="{$basedomain}users" class="button4">CANCEL</a>
+                      <input type="submit" class="button3" value="SAVE" />
+                  </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+{literal}
+
+<script>
+var servicedomain = basedomain+"service/";
+
+  var updateoptions = {
+            dataType : "json",
+            beforeSubmit: function(data) {
+                             $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html('Loading...');
+                             $("#popup-message").fadeIn();
+                             $(".close-popup-message").hide();
+                                        //$('#kluardisini').html("<blink>loading please wait</blink>");
+                            },
+                        success : function(data) {  
+							console.log(data.dataid);
+                            $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html(data);
+                            $("#popup-message").fadeIn();
+                            $(".close-popup-message").show();
+                            $("html, body").animate({ scrollTop: "0px" });
+							   if(data.status==1){
+								
+									$('#registerent').find("input[type=text],input[type=password], textarea").val("");
+									$('.msg').html(data.msg).fadeIn();
+									window.location = basedomain+"settings/addnewtemplates/?id="+data.dataid;
+								}
+								
+							
+								
+								if(data.status==2){
+									$('.msg_username').html(data.msg).fadeIn();
+								}
+								
+								if(data.status==4){
+									$('.msg_password').html(data.msg).fadeIn();
+								}
+								
+								if(data.status==5){
+									$('.msg_role').html(data.msg).fadeIn();
+								} 
+								if(data.status==6){
+									$('.msg_brand').html(data.msg).fadeIn();
+								} 
+								if(data.status==7){
+									$('.msg_city').html(data.msg).fadeIn();
+								} 
+								if(data.status==8){
+									$('.msg_name').html(data.msg).fadeIn();
+								}
+								if(data.status==9){
+									$('.msg_startdate').html(data.msg).fadeIn();
+								}
+								if(data.status==0){
+									$('.msg_enddate').html(data.msg).fadeIn();
+								}
+                        }
+          };          
+          
+
+$("#registerent").ajaxForm(updateoptions );
+
+$(document).ready(function(){
+  $('input[type=text]').click(function(){
+     $('.msg,.msg_name,.msg_username,.msg_password,.msg_role,.msg_brand,.msg_city,.msg_startdate,.msg_enddate').fadeOut();
+  });
+});
+
+</script>
+
+{/literal}

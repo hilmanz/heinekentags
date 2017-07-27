@@ -1,0 +1,101 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-user">&nbsp;</span>User Registration</h2>
+            <h2 class="fr"><a href="{$basedomain}users" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+            	<p>Your Touchbase's username and password  is required in order to change/edit user's registration below.</p>
+            </div><!-- end .summary -->
+
+			<form method="POST" action="" enctype="multipart/form-data" id="forms" class="forms" >
+            <div id="user-registration" class="boxcontent">
+                <section>
+                    {if $type_user eq '666'}
+                	
+                	<div class="row">
+                        <label for="">Brand</label>
+						
+                        <input name="brandsubid" type="text" class="required" value="{$selectupdatedata.brand}{$status.brand}">
+						<input name="role" type="hidden" class="required" value="1">
+						<div class="row">
+                       	<label class="msg_brand" style="color: red;">{$status.msgb}</label>
+						</div><!-- end .status -->
+                  </div><!-- end .row -->
+                    {/if}
+                	<div class="row">
+                        <label for="">Name </label>
+                        <input name="name" type="text" class="required" value="{$selectupdatedata.nama}{$status.name}">
+					<div class="row">
+                       	<label class="msg_name" style="color: red;">{$status.msgn}</label>
+					</div><!-- end .status -->
+					
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="">Username</label>
+                        <input name="username" value="{$selectupdatedata.username}{$status.user}" type="text" class="required">
+							 <div class="row">
+							<label class="msg_name" style="color: red;">{$status.msgu}</label>
+						    </div><!-- end .status -->
+					
+                	</div><!-- end .row -->
+					<div class="row">
+                        <label for="">City</label>
+                        <select name="city" id="city">
+						<option value="">Pick City</option>
+                            {foreach from=$cityList key=k item=v}
+                                
+                             <option value="{$v.id}" {if $selectupdatedata.city == $v.id } selected {/if} > {$v.city} </option>
+                        
+                            {/foreach}
+                        </select>
+                  </div><!-- end .row -->
+
+					<div class="row">
+                        <label for="">Start Date</label>
+                        <input name="startdate" value="{$selectupdatedata.awaldate}{$status.startdate}" type="text" style="width: 200px;" class="required datepicker">
+							 <div class="row">
+							<label class="msg_startd" style="color: red;">{$status.msgs}</label>
+						    </div><!-- end .status -->
+					
+                	</div><!-- end .row -->
+					   	<div class="row">
+                        <label for="">End Date</label>
+                        <input name="enddate" value="{$selectupdatedata.akhirdate}{$status.enddate}" type="text"  style="width: 200px;" class="required datepicker">
+							 <div class="row">
+							<label class="msg_endd" style="color: red;">{$status.msge}</label>
+						    </div><!-- end .status -->
+                	</div><!-- end .row -->
+					
+                	<div class="row">
+                        <label for="password">Password *</label>
+                        <input id="password" name="password" type="password" class="required" value="•••••">
+							
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="confirm">Confirm Password *</label>
+                        <input id="confirm" name="confirm" type="password" class="required" value="•••••">
+						
+						
+						<div class="row">
+							<label class="msg_name" style="color: red;">{$status.msgp}</label>
+						</div><br>
+						
+							<div class="row">
+						<span for="ss">* The password must contain at least 6 characters, 1 upper case and lower case and special character.</span>
+						</div>
+                	</div><!-- end .row -->
+                	<div class="row row-submit">
+                        <label for="">&nbsp;</label>
+                    	<input type="hidden" name="editit" value="ok" />
+                        <a href="{$basedomain}users" class="button4">CANCEL</a>
+                    	<input type="submit" class="button3" value="SAVE" />
+                	</div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+

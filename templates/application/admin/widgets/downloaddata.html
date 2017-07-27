@@ -1,0 +1,34 @@
+  <table border="1">
+		  <thead>
+			<tr>
+			  <th class="head0">No</th>
+			  <th class="head0">brand</th> 
+			  <th class="head0">name</th>
+			  <th class="head0">fb_id</th>
+			  <th class="head0">twitter_id</th> 
+			  <th class="head0">photo</th> 
+			  <th class="head0">age</th> 
+			  <th class="head0">location</th> 
+			  <th class="head0">collect_date</th> 
+			</tr>
+		  </thead>
+		  <tbody class="paginglist"> 		 
+		  {foreach from=$reportquerylist key=k item=val  }
+			<tr>
+			  <td class="center">{$val.no}</td>
+						 <td>{$val.brand}</td>
+						
+			  <td>{$val.first_name} {$val.middle_name} {$val.last_name}</td>
+			  <td>{if $val.fb_id==''}-{else}{$val.fb_id}{/if}</td>
+			  <td><a href="https://twitter.com/{$val.twitter_id}" target="_blank">{$val.twitter_id}</a></td>
+			  <td> 
+					<!-- <img height="55px" width="55px" src="{$basedomainpath}public_html/public_assets/reports/default.png" /> --> 
+					<img height="55px" width="55px" src="https://graph.facebook.com/{$val.fb_id}/picture?width=140&height=140" />  
+			  </td>
+			  <td>{$val.age}</td>
+			  <td>{$val.location}</td>					   
+			  <td>{$val.collect_date}</td>
+			</tr> 
+			{/foreach}  
+		  </tbody>
+		  </table>

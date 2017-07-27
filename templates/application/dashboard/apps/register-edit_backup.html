@@ -1,0 +1,242 @@
+{literal}
+<style>
+#selectfid{width:170px}
+#selectfidbrand{width:170px}
+#selectfidarea{width:170px}
+#selectfidpl{width:170px}
+#selectfidba{width:170px}
+</style>
+{/literal}
+
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-user">&nbsp;</span>User Registration</h2>
+            <h2 class="fr"><a href="index.php?page=projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+            	<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            </div><!-- end .summary -->
+
+			<form method="POST" action="" enctype="multipart/form-data" id="forms" class="forms" >
+            <div id="user-registration" class="boxcontent">
+                <section>
+                	<div class="row">
+                        <label for="">Role</label>
+                        <select name="role">
+                            {foreach from=$roleList key=k item=v}				
+						   		<option value="{$v.id}" {if $selectupdatedata.type == $v.id } selected {/if} > {$v.name} </option>
+                          	{/foreach}
+						</select>
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="">Brand</label>
+                        <select name="brandsubid">
+                            {foreach from=$brandList key=k item=v}	
+								<option value="{$v.id}" {if $selectupdatedata.brand == $v.id } selected {/if} >{$v.brandname}</option>
+							{/foreach}
+						</select>
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="">Name</label>
+                        <input name="name" type="text" class="required" value="{$selectupdatedata.nama}">
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="">Username</label>
+                        <input name="username" value="{$selectupdatedata.username}" type="text" class="required">
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="password">Password *</label>
+                        <input id="password" name="password" type="password" class="required" value="•••••">
+                	</div><!-- end .row -->
+                	<div class="row">
+                        <label for="confirm">Confirm Password *</label>
+                        <input id="confirm" name="confirm" type="password" class="required" value="•••••">
+                	</div><!-- end .row -->
+                	<div class="row row-submit">
+                        <label for="">&nbsp;</label>
+                    	<input type="submit" class="button4" value="CANCEL" />
+                    	<input type="submit" class="button3" value="SAVE" />
+                	</div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+
+<div class="row">
+    <div class="panel-primary">
+      <div id="do-register" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>REGISTRATION</h2>
+            </div>
+      		
+<form method="POST" action="" enctype="multipart/form-data" class="former" id="registerent" >
+<!-- <div style="border-collapse: collapse; border: 1px solid; overflow: auto; padding: 10px; width: 100px; float: right; position: fixed; right: 100px; top: 112px; height: 300px;"> 
+					<span >OUTPUT</span>
+					<p id="kluardisini" ></p>
+				</div>  -->
+               		<div class="formRegister2">
+                    	<div class="rows2">
+                            <label>Role</label>
+					
+                            <select name="role" >
+								<option value="0">-- </option>
+									{foreach from=$roleList key=k item=v}				
+								   <option value="{$v.id}" {if $selectupdatedata.type == $v.id } selected {/if} > {$v.name} </option>
+                                  {/foreach}
+                            </select>
+						
+                       </div>
+                       <div class="rows2">
+                         	<label>Brand</label>			
+                            <select name="brandsubid"  class="brandsubid">
+                                    <option value="0"> -- </option>
+								
+									{foreach from=$brandList key=k item=v}	
+										<option value="{$v.id}" {if $selectupdatedata.brand == $v.id } selected {/if} >{$v.brandname}</option>
+									{/foreach}						
+									
+                            </select> 
+                        </div>
+               
+                    	<div class="rows2">
+                    		<label>Name</label><input class="inputRegister" type="text" name="name" value="{$selectupdatedata.nama}"/>
+                    	</div>
+                        <div class="rows2">
+                        	<label>Nickname</label> <input class="inputRegister" type="text" name="nickname" value="{$selectupdatedata.nickname}"/>
+                        </div>
+                        <div class="rows2">
+                        	<label>Username</label><input class="inputRegister" type="text" name="username" value="{$selectupdatedata.username}"/>
+                        </div>
+                                         
+                       
+                        <div class="rows2">
+                        	<label class="bluecolor">City</label>	
+                           <select name="city" >
+                                <option value="0" > -- </option>
+									{foreach from=$city key=k item=v}	
+										<option value="{$v.id}" {if $selectupdatedata.city == $v.id } selected {/if}>{$v.city}</option>
+									{/foreach}	
+                        </select>
+                        </div>
+                     
+                       	<div class="rows2">
+                        	<label>Last Name</label> <input class="inputRegister" type="text" name="lastname" value="{$selectupdatedata.last_name}"/>
+                        </div>
+                        <div class="rows2">
+                            <label>Gender</label>
+                            <div class="radioChoose">				
+                            <input type="radio" name="sex" value="Male" {if $selectupdatedata.sex =='Male'} checked {/if} /> Male </div>
+                            <div class="radioChoose">	
+                            <input type="radio" name="sex" value="Female" {if $selectupdatedata.sex =='Female'} checked {/if} /> Female</div>
+                        </div>
+                        <div class="rows2 passwordrows">
+                        <label>Email</label><input class="inputRegister" type="email" name="email" value="{$selectupdatedata.email}"/>
+                        </div>
+                      
+									
+                </div> <!-- /.formRegister2 -->
+				<!--<div style="padding:10px;border-collapse:collapse;">  	<div class="row" >		IMAGE </div><div class="row" >	<input type="file" name="img" /></div></div>
+				<div style="padding:10px;border-collapse:collapse;">  	<div class="row" >		CITY AREA
+				</div><div class="row" >	
+						<select name="city" >
+								<option value="" > NOT USED </option>
+								<option value="215" > JAKARTA </option>
+								<option value="407" > SURABAYA </option>
+								<option value="140" > BANDUNG </option>						
+								<option value="292" > MEDAN </option>
+								<option value="451" > JOGJA </option>
+								<option value="199" > BALI </option>
+								<option value="318" > PALEMBANG </option>
+						</select>
+				</div></div> -->
+                
+
+				
+				<!-- <div style="padding:10px;border-collapse:collapse;">    
+				<div class="row" > BIRTHDAY 
+				</div><div class="row" >	<input type="text" name="birthday" /> yyyy-mm-dd
+				</div>
+				</div>
+				<div style="padding:10px;border-collapse:collapse;">  
+				<div class="row" > PHONE NUMBER 
+				</div><div class="row" >	<input type="text" name="phone_number" />
+				</div>
+				</div> -->
+				<div style="padding:10px;border-collapse:collapse;"><input type="hidden"  name="edit"></div>
+				<div class="rows2">
+				  <input class="button registerrows fl reg-button" name="submit" type="submit" value="Updater">
+				  <input type="hidden" name="editit" value="ok" />
+				  <a class="button reg-button fr" href="{$basedomain}register">Cancel</a>
+				  </div>
+				  
+				</form>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row -->
+<div id="popup-message">
+    <h3></h3>
+    <a class="button close-popup-message" href="{$basedomain}register">OK</a>
+</div>
+<div id="bg-popups"></div>
+{literal}
+
+<script>
+var servicedomain = basedomain+"service/";
+
+	var updateoptions = {
+						dataType : "html",
+						beforeSubmit: function(data) {
+                             $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html('Loading...');
+                             $("#popup-message").fadeIn();
+                             $(".close-popup-message").hide();
+                                        //$('#kluardisini').html("<blink>loading please wait</blink>");
+                            },
+                        success : function(data) {  
+                            $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html(data);
+                            $("#popup-message").fadeIn();
+                            $(".close-popup-message").show();
+                                    // $('#kluardisini').html("<p>"+data+"</p>");
+                        }
+					};					
+					
+
+$("#registerent").ajaxForm(updateoptions );
+
+
+$(document).ready(function(){
+	
+	
+			
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:2},function(data){
+				var html ="<option value='0' > NOT HAVE </option>";
+				$.each(data,function(i,e){
+					html+="<option value='"+e.id+"' >"+e.name+" "+e.last_name+" "+e.pagename+"</option>";
+				})
+				$(".otherid").html(html);
+			},"JSON")
+			
+		 
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:5},function(data){
+				var html ="<option value='0' > NOT HAVE </option>";
+				$.each(data,function(i,e){
+					html+="<option value='"+e.id+"' >"+e.pagename+"</option>";
+				})
+				$(".areaid").html(html);
+			},"JSON")
+			
+	
+	
+});
+
+
+</script>
+
+{/literal}

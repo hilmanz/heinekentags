@@ -1,0 +1,45 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> News Shinkenjuku Default Dynamic Book</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+              
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+            
+			  {if $list}
+				{section name=i loop=$list}    
+					<div class="pagilist">
+						<h3>{$list[i].title}</h3>
+						<img src="{$basedomain}assets/gallery/buku/{$list[i].halaman_cover}" width="50" height="50" />
+						<br>
+						{$list[i].content}<br>
+						<a href="#" onclick="window.open('{$basedomain}buku/bukuDetail?id={$list[i].id_book}','mywindowtitle','width=1000,height=800,scrollbars=yes')" 
+ class="button"> <span class="icon-user4">Selengkapnya</a>
+					
+						</div><br><br>
+						{/section}
+				{/if}		
+						
+		
+			  
+			
+			
+			
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+          
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_news_list","paging_ajax_news",10);
+	
+</script>

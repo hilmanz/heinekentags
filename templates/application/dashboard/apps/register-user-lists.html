@@ -1,0 +1,70 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-users">&nbsp;</span> Manage Users</h2>
+              {if $user->type==666 }  <h2 class="fr"><a href="{$basedomain}home/newreg" class="button2">Add New</a></h2>{/if}
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		 <p>Manage users that are allowed to access and use the CMS. You could also assign security roles to each users.</p>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">User Id</th> 
+					<th class="head0">Name</th> 
+					<th class="head0">Brand Name</th> 
+					<th class="head0">Type User</th> 
+					<th class="head0">Register Date</th> 
+					<th class="head0">Start Date</th> 
+					<th class="head0">End Date</th> 
+					<th class="head0">Action</th>
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+					
+						<td width="1">{$list[i].no}</td>
+						<td><span>{$list[i].smname}</span></td> 
+						<td><span>{$list[i].nama}</span></td> 
+						<td><span>{$list[i].brand}</span></td> 
+						<td><span>{$list[i].types}</span></td> 
+						<td><span>{$list[i].regisdate}</span></td> 
+						<td><span>{$list[i].createdate}</span></td> 
+						<td><span>{$list[i].closeddate}</span></td> 
+						<td>
+							<a href="{$basedomain}settings/edit?id={$list[i].ownerid}" class="button" ><span class="icon-pencil">&nbsp;</span>Edit Templates</a>
+                        	<a href="{$basedomain}home/registeredit?id={$list[i].ownerid}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+                        	{if $user->id != $list[i].ownerid}
+                        	<a href="javascript:void(0)" class="button" onClick="confirmation('{$basedomain}home/hapus?id={$list[i].ownerid}','Confirm to Delete?')" ><span class="icon-trash">&nbsp;</span> Delete</a>
+                        	{/if}
+                        </td>
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_user_list" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_user_list","paging_ajax_regis",10);
+	
+	var userid = {$user->id};
+</script>

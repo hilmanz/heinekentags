@@ -1,0 +1,51 @@
+{literal}
+	<script>
+	tinymce.init({selector:'textarea',
+
+    toolbar1: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+    toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | anchor | forecolor backcolor",
+
+
+	theme : "modern",
+
+    height: "100",
+    width:900
+	
+	});
+	</script>
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Add New Folder Gallery</h2>
+            <h2 class="fr"><a href="{$basedomain}gallerycms/addFolder" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+                <p>Shinkenjuku Management System helps you to overview all your Career. Add your new news to start. </p>
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>Career Name</h3>
+                    <p>Fill in the details below to submit your new project.</p>
+                   
+                    <div class="row">
+                        <label for="uname">Name Folder</label>
+                        <input id="nameFolder" name="nameFolder" type="text" class="required">
+						<small class="msg_name" style="color: red;">{$status.msgn}</small>
+                    </div><!-- end .row -->
+                 
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+						 <a href="{$basedomain}users" class="button4">CANCEL</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

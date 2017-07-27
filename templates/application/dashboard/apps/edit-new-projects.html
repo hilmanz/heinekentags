@@ -1,0 +1,32 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Edit Project</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+                <p>For one thing and another your project's name suddenly changed. No worries, you can always change your project's name anytime. </p>
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>Project Name</h3>
+                    <p>Change the name of your project's name below:</p>
+                    <div class="row">
+                        <label for="projectName">Project name</label>
+                        <input id="projectName" name="projectName" type="text" class="required" value="{$load.brandname}">
+                    </div><!-- end .row -->
+                    <div class="row row-submit">
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+                        <span>{$status.msg}</span>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

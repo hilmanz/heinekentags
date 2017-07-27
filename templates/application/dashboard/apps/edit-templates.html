@@ -1,0 +1,498 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span>Edit Templates</h2> 
+        </div><!-- end .titlebox -->
+        <div class="content"> 
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent designProject">
+                <section class="step1">
+                    <h3>Templates Update</h3>
+					
+					{if $idnya == 1 && $loginbg != '' }
+					
+					{foreach from=$load key=key item=v}
+					<div class="row">
+                        <label for="bgPotrait">Background Potrait<br><label for="ssS" style="font-size:12px; font-weight:bold;color:red;">* File 720x1280 type jpg/png</label></label>
+						
+                        <input id="bgPotrait" class='bg' name="bgPotrait" type="file" />
+                        <input name="bgPotraitold" type="hidden" value="{$v.loginbackground[0].potrait}"/>
+						{if $v.loginbackground[0].potrait != ''}
+						<img width="55px" height="55px" class="bg_pot" src="{$basedomainpath}public_html/public_assets/contents/login/potrait/{$v.loginbackground[0].potrait}">
+						{else}
+						<img width="55px" height="55px" class="bg_pot" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+					</div><!-- end .ro
+                    </div><!-- end .row -->  				
+					<div class="row">
+                        <label for="bgLandscape">Background Landscape<br><label for="ssxxS" style="font-size:12px; font-weight:bold;color:red;">* File 1280x720 type jpg/png</label>
+                        </label>
+                        <input id="bgLandscape" class='bg' name="bgLandscape" type="file" />
+                        <input name="bgLandscapeold" type="hidden" value="{$v.loginbackground[0].landscape}"/>
+						{if $v.loginbackground[0].landscape != ''}
+						<img width="55px" height="55px" class="bg_land"  src="{$basedomainpath}public_html/public_assets/contents/login/landscape/{$v.loginbackground[0].landscape}">
+						{else}
+						<img width="55px" height="55px" class="bg_land" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+					</div><!-- end .row -->
+					<div class="row">
+                        <label for="tqpotrait">Thankyou Potrait<br><label for="ssxS" style="font-size:12px; font-weight:bold;color:red;">* File 720x1280 type jpg/png</label>
+                        </label>
+                        <input id="tqpotrait" class='bg' name="tqpotrait" type="file" />
+                        <input name="tqpotraitold" type="hidden" value="{$v.thanksbackground[0].potrait}" />
+						{if $v.thanksbackground[0].potrait != ''}
+						<img width="55px" height="55px"  class="bg_tqpo" src="{$basedomainpath}public_html/public_assets/contents/thanks/potrait/{$v.thanksbackground[0].potrait}">
+						{else}
+						<img width="55px" height="55px" class="bg_tqpo" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+						
+					</div><!-- end .row -->					
+					<div class="row">
+                        <label for="tqlandscape">Thankyou Landscape<br><label for="ssxxxS" style="font-size:12px; font-weight:bold; color:red;">* File 1280x720 type jpg/png</label> </label>
+                        <input id="tqlandscape"class='bg'  name="tqlandscape" type="file" />
+                        <input name="tqlandscapeold" type="hidden" value="{$v.thanksbackground[0].landscape}" />
+						{if $v.thanksbackground[0].landscape != ''}
+						<img width="55px" height="55px" class="bg_tqla" src="{$basedomainpath}public_html/public_assets/contents/thanks/landscape/{$v.thanksbackground[0].landscape}">
+						{else}
+						<img width="55px" height="55px" class="bg_tqla" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+					</div><!-- end .row -->		
+					<div class="row">
+					 <label for="login_type">Login Type<br></label>
+						<select name="login_type" id="login_type" >
+							<option value="" {if $v.login_type==''} selected {/if}> - </option>
+							<option value="2" {if $v.login_type==2} selected {/if}>Twitter</option>
+							<option value="1" {if $v.login_type==1} selected {/if}>Facebook </option>
+				
+						</select>
+					</div>
+				
+						<input type="hidden" name="client_type" value="{$user->id}">
+				
+
+				
+							<div class="row fb" id="facebook_id" 	{if $v.login_type==2} style="display:none" {/if}>
+							<div class="row">
+							<label for="redirecturi">Facebook APP ID<br></label>
+							<input id="redirecturi" name="fbid" type="text" value="{$v.fb_id}" />
+							</div>
+							</div>
+					
+				
+
+					<div class="row fb" id="twitt_id" {if $v.login_type==1} style="display:none" {/if}>
+						<div class="row">
+						<label for="redirecturi">Twitter API Key<br></label>
+                        <input id="redirecturi" name="twitid" type="text" value="{$v.twitter_id}"/>
+						</div>
+			
+						<div class="row">
+						<label for="redirecturi">Twitter API Secret<br></label>
+                        <input id="redirecturi" name="twitsec" type="text" value="{$v.twitter_secret}"/>
+						</div>
+						<div class="row">
+						<label for="redirecturi">Twitter ID<br></label>
+                        <input id="redirecturi" name="twitfol" type="text" value="{$v.twitter_follow}"/>
+						</div>
+					</div>
+					
+					
+					<div class="row">
+                        <label for="redirecturi">Redirect URI<br></label>
+                        <input id="redirecturi" name="redirecturi" type="text" value="{$v.redirect_url}" />
+                    </div><!-- end .row -->	
+						<input type="hidden" name="templateid" value="{$v.id}">
+				
+					<label class="msg_name" style="color: red;" ></label>
+                    <div class="row row-submit">
+						<input type="hidden" name="submit" value="1">
+						<input type="submit" value="SAVE" class="button3 submitreg"  /> 
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end .designProject -->
+              <div id="demo-iphone">
+            	<img src="{$basedomain}assets/images/iphone5.png" />
+                <div id="backgroundApps">
+				
+				  <img class="bg_home" src="{$basedomainpath}public_html/public_assets/contents/login/potrait/{$v.loginbackground[0].potrait}"/>
+				  
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+              
+                </div>
+					
+                <div id="backgroundThanks">
+                <img />
+                </div>
+				{if $v.login_type==1}
+				<div id="fbdefault" class="btn-default" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-fb.png" /></div>
+				{/if}
+				{if $v.login_type==2}
+				<div id="fbdefault" class="btn-default" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-twitter.png" /></div>
+				{/if}
+				{/foreach}
+				
+				{else $idnya == 1 && $loginbg == '' }
+				
+				{foreach from=$load key=key item=v}
+					<div class="row">
+                         <label for="bgPotrait">Background Potrait<br><label for="ssS" style="font-size:12px; font-weight:bold;color:red;">* File 720x1280 type jpg/png</label></label>
+						 
+                        <input id="bgPotrait" class='bg' name="bgPotrait" type="file" />
+                        <input name="bgPotraitold" type="hidden" value="{$v.loginbackground[0].potrait}"/>
+						{if $v.loginbackground[0].potrait==''}
+						<img width="55px" height="55px" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{else}
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/login/potrait/{$v.loginbackground[0].potrait}">
+						{/if}
+                    </div><!-- end .row -->  				
+					<div class="row">
+                          <label for="bgLandscape">Background Landscape<br><label for="ssxxS" style="font-size:12px; font-weight:bold;color:red;">* File 1280x720 type jpg/png</label></label>
+                        <input id="bgLandscape" class='bg' name="bgLandscape" type="file" />
+                        <input name="bgLandscapeold" type="hidden" value="{$v.loginbackground[0].landscape}"/>
+						{if $v.loginbackground[0].landscape != ''}
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/login/landscape/{$v.loginbackground[0].landscape}">
+						{else}
+						<img width="55px" height="55px" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+						
+					</div><!-- end .row -->
+					<div class="row">
+                        <label for="tqpotrait">Thankyou Potrait<br><label for="ssxS" style="font-size:12px; font-weight:bold;color:red;">* File 720x1280 type jpg/png</label></label>
+                        <input id="tqpotrait" class='bg' name="tqpotrait" type="file" />
+                        <input name="tqpotraitold" type="hidden" value="{$v.thanksbackground[0].potrait}" />
+						{if $v.thanksbackground[0].potrait != ''}
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/thanks/potrait/{$v.thanksbackground[0].potrait}">
+						{else}
+						<img width="55px" height="55px" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+					</div><!-- end .row -->					
+					<div class="row">
+                       <label for="tqlandscape">Thankyou Landscape<br><label for="ssxxxS" style="font-size:12px; font-weight:bold; color:red;">* File 1280x720 type jpg/png</label> </label>
+                        <input id="tqlandscape"class='bg'  name="tqlandscape" type="file" />
+                        <input name="tqlandscapeold" type="hidden" value="{$v.thanksbackground[0].landscape}" />
+						{if $v.thanksbackground[0].landscape != ''}
+						<img width="55px" height="55px" src="{$basedomainpath}public_html/public_assets/contents/thanks/landscape/{$v.thanksbackground[0].landscape}">
+						{else}
+						<img width="55px" height="55px" src="{$basedomain}assets/images/bg-iphone.jpg">
+						{/if}
+					</div><!-- end .row -->		
+					<div class="row">
+					 <label for="login_type">Login Type<br></label>
+						<select name="login_type" id="login_type" >
+							<option value="" {if $v.login_type==''} selected {/if}> - </option>
+							<option value="2" {if $v.login_type==2} selected {/if}>Twitter</option>
+							<option value="1" {if $v.login_type==1} selected {/if}>Facebook </option>
+				
+						</select>
+					</div>
+				
+						<input type="hidden" name="client_type" value="{$user->id}">
+													
+					<div class="row">
+                        <label for="redirecturi">Redirect URI<br></label>
+                        <input id="redirecturi" name="redirecturi" type="text" value="{$v.redirect_url}" />
+                    </div><!-- end .row -->	
+						<input type="hidden" name="templateid" value="{$v.id}">
+				
+					<label class="msg_name" style="color: red;" ></label>
+                    <div class="row row-submit">
+						<input type="hidden" name="submit" value="1">
+						<input type="submit" value="SAVE" class="button3 submitreg"  /> 
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end .designProject -->
+              <div id="demo-iphone">
+            	<img src="{$basedomain}assets/images/iphone5.png" />
+                <div id="backgroundApps">
+				<img class="bg_home" src="{$basedomain}assets/images/bg-iphone.jpg"/>
+				
+				  
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+              
+                </div>
+					
+                 <div id="backgroundThanks" class="backgroundThanks">
+                <img src="{$basedomain}assets/images/thankyou.png" />
+                </div>
+					
+                <div id="backgroundThanks">
+                <img />
+                </div>
+				{if $v.login_type==1}
+				<div id="fbdefault" class="btn-default" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-fb.png" /></div>
+				{/if}
+				{if $v.login_type==2}
+				<div id="fbdefault" class="btn-default" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-twitter.png" /></div>
+				{/if}
+				{/foreach}
+			    {/if}
+				{if $idnya == '' }
+				
+					<div class="row">
+                        <label for="bgPotrait">Background Potrait<br></label>
+						
+                        <input id="bgPotrait" class='bg' name="bgPotrait" type="file" />
+                        <input name="bgPotraitold" type="hidden" value="{$v.loginbackground[0].potrait}"/>
+						<img width="55px" height="55px" src="{$basedomain}assets/images/bg-iphone.jpg">
+                    </div><!-- end .row -->  				
+					<div class="row">
+                        <label for="bgLandscape">Background Landscape<br></label>
+                        <input id="bgLandscape" class='bg' name="bgLandscape" type="file" />
+                        <input name="bgLandscapeold" type="hidden" value="{$v.loginbackground[0].landscape}"/>
+						
+					</div><!-- end .row -->
+					<div class="row">
+                        <label for="tqpotrait">Thankyou Potrait<br></label>
+                        <input id="tqpotrait" class='bg' name="tqpotrait" type="file" />
+                        <input name="tqpotraitold" type="hidden" value="{$v.thanksbackground[0].potrait}" />
+						
+					</div><!-- end .row -->					
+					<div class="row">
+                        <label for="tqlandscape">Thankyou Landscape<br></label>
+                        <input id="tqlandscape"class='bg'  name="tqlandscape" type="file" />
+                        <input name="tqlandscapeold" type="hidden" value="{$v.thanksbackground[0].landscape}" />
+						
+						
+					</div><!-- end .row -->		
+					<div class="row">
+					 <label for="login_type">Login Type<br></label>
+						<select name="login_type" id="login_type" >
+							<option value="" {if $v.login_type==''} selected {/if}> - </option>
+							<option value="2" {if $v.login_type==2} selected {/if}>Twitter</option>
+							<option value="1" {if $v.login_type==1} selected {/if}>Facebook </option>
+				
+						</select>
+					</div>
+				
+						<input type="hidden" name="client_type" value="{$user->id}">
+						<div class="row fb" id="facebook_id" 	{if $v.login_type==2 || $v.login_type=='' } style="display:none" {/if}>
+							<div class="row">
+							<label for="redirecturi">Facebook APP ID<br></label>
+							<input id="redirecturi" name="fbid" type="text" value="{$v.fb_id}" />
+							</div>
+							</div>
+					
+				
+
+					<div class="row fb" id="twitt_id" {if $v.login_type==1 || $v.login_type==''} style="display:none" {/if}>
+						<div class="row">
+						<label for="redirecturi">Twitter API KEY<br></label>
+                        <input id="redirecturi" name="twitid" type="text" value="{$v.twitter_id}"/>
+						</div>
+			
+						<div class="row">
+						<label for="redirecturi">Twitter API Secret<br></label>
+                        <input id="redirecturi" name="twitsec" type="text" value="{$v.twitter_secret}"/>
+						</div>
+						<div class="row">
+						<label for="redirecturi">Twitter ID<br></label>
+                        <input id="redirecturi" name="twitfol" type="text" value="{$v.twitter_follow}"/>
+						</div>
+					</div>								
+					<div class="row">
+                        <label for="redirecturi">Redirect URI<br></label>
+                        <input id="redirecturi" name="redirecturi" type="text" value="{$v.redirect_url}" />
+                    </div><!-- end .row -->	
+						<input type="hidden" name="templateid" value="{$v.id}">
+				
+					<label class="msg_name" style="color: red;" ></label>
+                    <div class="row row-submit">
+						<input type="hidden" name="add" value="1">
+						<input type="submit" value="SAVE" class="button3 submitreg"  /> 
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end .designProject -->
+              <div id="demo-iphone">
+            	<img src="{$basedomain}assets/images/iphone5.png" />
+                <div id="backgroundApps">
+				<img class="bg_home" src="{$basedomain}assets/images/bg-iphone.jpg"/>
+				
+				  
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+              
+                </div>
+					
+                 <div id="backgroundThanks" class="backgroundThanks">
+                <img src="{$basedomain}assets/images/thankyou.png" />
+                </div>
+					
+                <div id="backgroundThanks">
+                <img />
+                </div>
+			
+				<div id="fbdefault" class="btn-default" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-fb.png" /></div>
+			
+				
+			
+				{/if}
+               	<div id="1" class="box" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-fb.png" /></div>
+				<div id="2" class="box" style='	left: 0;
+												padding: 106% 27%;
+												position: absolute;
+												top: 0;
+												width: 100%;'>
+                <img src="{$basedomain}assets/images/login-twitter.png" /></div>
+            </div><!-- end .demo-iphone -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+{*}
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+    $('.submitreg').click(function () 
+    { 
+	 
+        var imgVal = $('#bgPotrait').val(); 
+        var imgVal2 = $('#bgLandscape').val(); 
+        var imgVal3 = $('#tqpotrait').val(); 
+        var imgVal4 = $('#tqlandscape').val(); 
+        
+		if(imgVal==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal2==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal3==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else if(imgVal4==''){              
+			$('.msg_name').html('Please Insert an Image'); 
+        }else{
+			return true;
+		}
+		
+        return false; 
+
+    }); 
+});
+ 
+</script> 
+
+{/literal}  
+{/*}
+
+<script>
+{literal}
+	function readURL(input,attr) {
+
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+				if(attr=='home_bg'){
+                    $('.bg_home').attr('src', e.target.result);                
+                }
+               if(attr=='bgPotrait'){
+                    $('.bg_home').attr('src', e.target.result);   
+					$('.bg_pot').attr('src', e.target.result);   
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+					
+                }if ( attr=='bgLandscape'){
+                   
+					$('.bg_home').attr('src', e.target.result);   
+					$('.bg_land').attr('src', e.target.result);  
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+				
+				}if ( attr=='tqpotrait'){
+                   
+					$('.bg_home').attr('src', e.target.result);   
+					$('.bg_tqpo').attr('src', e.target.result);  
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+				
+				}if ( attr=='tqlandscape'){
+                   
+					$('.bg_home').attr('src', e.target.result);   
+					$('.bg_tqla').attr('src', e.target.result);  
+					$( ".backgroundThanks" ).hide();
+					$( "#buttonLogin" ).hide();	
+				
+				}
+        
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	$(document).ready(function() { 
+        //Init
+
+		$(".bg").change(function(){
+            var attr = $(this).attr('name')
+            readURL(this,attr);
+        });
+
+        });
+		
+		
+	$(document).ready(function () {
+	
+				$('.box').hide();
+			
+				
+				$('#login_type').change(function () {
+					$('#fbdefault').hide();
+				$('.box').hide();
+				$('#'+$(this).val()).show();
+    });
+	});
+	
+{/literal}
+</script>
+<script>
+{literal}
+$(document).ready(function(){
+    $('#login_type').on('change', function() {
+   if ( this.value == '1')
+	{
+    $("#facebook_id").show();
+	$("#twitt_id").hide();
+  }
+	if ( this.value == '2')
+  {
+	
+	$("#twitt_id").show();
+    $("#facebook_id").hide();
+  }
+	if ( this.value == '')
+  {
+	$("#twitt_id").hide();
+    $("#facebook_id").hide();
+  }
+});
+});
+{/literal}
+</script>

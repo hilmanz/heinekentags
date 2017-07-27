@@ -1,0 +1,320 @@
+<div class="page_section" id="dashboard-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-dashboard">&nbsp;</span> My Data</h2>
+            <h2 class="fr"><a href="javascript:void(0);" onclick="downloadreport()" class="button2"><span class="icon-download">&nbsp;</span></a></h2>
+            
+        </div><!-- end .titlebox -->
+        {*}
+        <div class="blackbox" id="dashreport">
+          <div class="row">
+              <div class="col3">
+                  <div class="box">
+                      <h3>146</h3>
+                        <h5><span class="ico icon-trophy">&nbsp;</span>Total Registrants</h5>
+                    </div><!-- end .box -->
+                </div><!-- end .col3 -->
+            </div><!-- end .row -->
+        </div><!-- end .blackbox -->
+        {/*}
+        <div class="content">
+        <div class="row-shorter">
+            {if $user->type == '666'}
+                <div class="shorter fl">
+                    <span class="fl">Project</span>
+                    <select name='brand' class='selectBrand fl'>
+                    	<option>Choose the project</option>
+                        {section loop=$brands name=i}
+                            <option value='{$brands[i].id}' {if $user->brand == $brands[i].id } select='selected' {/if} >{$brands[i].brandname}</option>
+                        {/section}
+                    </select>
+                    <input type='hidden' name='brand' value='' class='brandd'>
+                    <input type='hidden' name='sort' value='' class='sort'>
+                </div>
+            {/if}
+            <div class="shorter fl">
+                <span class="fl">Event</span>
+                <select name='event' class='selectEvent fl'>
+                    
+                </select>
+            </div>
+            <div class="shorter fr" id="datePick">
+                    <span class="fl">Date Range</span>
+                    <div class="rows fl">
+                        <input type="text" name="startdate" class="datepicker submitter startdate " id="dp1403509217274">
+                    </div><!-- /.rows -->
+					
+                    <span class="fl">To</span>
+                    <div class="rows fl">
+                        <input type="text"  name="enddate" class="datepicker enddate " id="dp1403509217275">
+                    </div><!-- /.rows -->
+            </div>
+        </div><!-- end .row-shorter -->
+        <div class="summary2">
+            <p>This is your project's database where all the data collected from the events are stored here. Data search results can be sorted by project, event and date range.
+</p>
+        </div><!-- end .summary -->
+					
+      <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th class="head0">No</th>
+          <th class="head0">Register Date </th> 
+          <th class="head0">Name</th>
+          <th class="head0">Email</th>
+          <th class="head0">Phone Number</th> 
+          <th class="head0">FB ID</th> 
+          <th class="head0">Twitter ID</th> 
+          <th class="head0">Instagram ID</th> 
+          <th class="head0">Photo</th> 
+        </tr>
+      </thead>
+      <tbody class="pagingenotourage">
+      {foreach from=$enturagereport key=k item=val  }
+        <tr>
+          <td class="center">{$val.no}</td>
+                     <td>{$val.register_date}</td>
+                    
+          <td>{$val.name}</td>
+          <td>{$val.email}</td>
+          <td>{$val.phone_number}</td>
+          <td>{if $val.facebookID==''}-{else}{$val.facebookID}{/if}</td>
+          <td><a href="https://twitter.com/{$val.twitterID}" target="_blank">{$val.twitterID}</a></td>
+          <td><a href="http://instagram.com/{$val.instagramID}" target="_blank">{if $val.instagramID==''}-{else}{$val.instagramID}{/if}</a></td>
+                   
+          <td>
+            {if $val.images==''}
+              <img height="55px" width="55px" src="{$basedomainpath}public_assets/contests/default.jpg" />
+            {else}
+                          <a href="#popup-photo" class="showPopup thumb-s">
+              <img height="55px" width="55px" src="{$basedomainpath}public_assets/contests/{$val.images}" />
+                            </a>
+            {/if}           
+          </td>
+        </tr>
+        {/foreach} 
+          
+      </tbody>
+      </table>
+           <div id="pagingajaxlist" class="paging">
+            {*}   <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>{/*}
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+  <div class="popup">
+    <div id="popup-photo" class="popupContent">
+            <div class="popup-entry">
+            	<div class="photo-detail">
+                	<img src="http://touchbaseconnect.com/public_assets/contests/b4af43ab85323f0ebb1e2a129a92cc7f.jpg" />
+                </div>
+            </div><!-- end .popup-entry -->
+    </div><!-- end .popupContent -->
+</div><!-- end .popup-->
+<script>
+var eventt = 0;
+var brand = 0;
+var total={$total};
+getpaging(0,total,"pagingajaxlist","paging_entourage_report",20);
+
+{literal}
+
+
+var startdate = {};
+startdate.dp1403509217274 = "";
+var enddate = {};
+enddate.dp1403509217275 = "";
+
+$(document).ready(function(){
+	$( 'input[name="startdate"],input[name="enddate"]' ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+	$('#ui-datepicker-div').hide();
+	//$('input[name="startdate"],input[name="enddate"]').datepicker({dateFormat:"dd/mm/yy"}).val()	;
+	$('select[name="brand"]').prop('selectedIndex',0);
+	$('input[name="startdate"],input[name="enddate"]').val('');
+	//eventList();
+});
+
+  $(document).on('change','.submitter', function(){
+		$("#filterform").submit();
+	}) 
+  $('select.selectBrand').on('change',function(){
+	
+			brand = parseInt($(this).val());
+			var startdate = {};
+			startdate.dp1403509217274 = "";
+			var enddate = {};
+			enddate.dp1403509217275 = "";
+			$('input[name="startdate"]').val('');
+			$('input[name="enddate"]').val('');
+			
+			$(".brandid").val(brand);
+			
+			eventList();
+			//ajaxreport();
+  });
+
+  $('select.selectEvent').on('change',function(){
+		
+		eventt = parseInt($(this).val());
+		brand = parseInt($(this).val());
+		var startdate = {};
+		startdate.dp1403509217274 = "";
+		var enddate = {};
+		enddate.dp1403509217275 = "";
+		$('input[name="startdate"]').val('');
+		$('input[name="enddate"]').val('');
+		ajaxreport();
+	});
+	
+	// document.getElementById('dp1403509217274').onchange = function (e) {
+ //    if (this.value != startdate.dp1403509217274) {
+ //        // ngasih value onchange
+	// 	startdate = this.value;
+	// 	// shut ke ajax nya 
+	// 	ajaxreport();
+ //       }
+	// };
+	document.getElementById('dp1403509217275').onchange = function (e) {
+    if (this.value != enddate.dp1403509217275) {
+        // ngasih value onchange
+        startdate = $('#dp1403509217274').val();
+		enddate= this.value;
+		// shut ke ajax nya 
+		ajaxreport();
+       }
+	};
+
+  function eventList(){
+    $.ajax({
+        type: 'POST',
+        url : basedomain+'reports/getEventListAjax',
+        dataType:'json',
+        data: {brandid: brand},
+        success : function(result){
+          if(result.status==1){
+            var str = '';
+            $.each(result.data, function(k,v){
+                str+='<option value="'+v.id+'">'+v.brandname+'</option>';
+            });
+
+            $('select[name="event"]').html(str);
+			
+			
+          }
+        }
+    })
+  }
+
+
+	function ajaxreport()
+	{
+		var brand = $(".brandid").val();
+		
+		var dataParameter ={brandid: brand, eventid: eventt,startdate:startdate,enddate:enddate};
+		 var str='';
+		 var x=0;
+		$.ajax ({ 
+					type	 : 'POST', 
+					url	 :  basedomain+'reports/ajaxReports' , 
+					dataType:'json',
+					data:dataParameter,
+					success	: function (result) 
+						{  
+							if(result.status==1)
+							{
+								total = result.data.total;
+								$('.tmpdata').data('total',total);
+								console.log(result.status);
+								$.each(result.data.result ,function(k,v){
+								str +='<tr>';
+									str +='<td class="center">'+v.no+'</td>';
+									str +='<td>'+v.register_date+'</td>';
+									str +='<td>'+v.name+'</td>';
+									str +='<td>'+v.email+'</td>';
+									str +='<td>'+v.phone_number+'</td>';
+									if(v.facebookID!=''){
+										str +='<td>'+v.facebookID+'</td>';
+									}
+									else
+									{
+										str +='<td> - </td>';
+									}
+									if(v.twitterID!=''){
+										str +='<td><a href="https://twitter.com/'+v.twitterID+'" target="_blank">'+v.twitterID+'</a></td>';
+									}
+									else
+									{
+										str +='<td> - </td>';
+									}
+									if(v.instagramID!=''){
+										str +='<td><a href="https://instagram.com/'+v.instagramID+'" target="_blank">'+v.instagramID+'</a></td>';
+									}
+									else
+									{
+										str +='<td> - </td>';
+									}
+									
+									if(v.images ==''){
+										
+										str +='<td> <img height="55px" width="55px" src="'+basedomain+'public_assets/contests/default.jpg" /></td>';
+									
+									}
+									else
+									{
+										str +='<td>';
+										str +='<a href="#popup-photo" class="showPopup thumb-s">';
+										str +='<img height="55px" width="55px" src="'+basedomain+'public_assets/contests/'+v.images+'" />';
+										str +='</td>';
+									}
+								str +='</tr>';
+								
+								});
+								
+								$('.pagingenotourage').html(str);
+								console.log(total);
+								 getpaging(0,total,"pagingajaxlist","paging_entourage_report",20);
+							}
+							else
+							{
+								$('.tmpdata data-total').val(0);
+								str +='<tr><td colspan="9"> no data </td></tr>';
+								$('.pagingenotourage').html(str);
+								 getpaging(0,0,"pagingajaxlist","paging_entourage_report",20);
+							}
+							$('.showPopup').magnificPopup({
+							  type:'inline',
+							  midClick: true 
+							});
+
+						}
+				});
+	
+	}
+
+	function downloadreport(){
+		if(window.location.search==''){
+			window.location = window.location.href+'?download=report';
+		}else{
+			if(window.location.search.match(/download=report/)){
+				window.location =window.location.reload();
+			}else{
+				window.location =window.location.href+'&download=report';
+			}
+		}
+	} 
+	$(document).on("click",".showPopup", function(){
+		var popupsrc = $(this).find('img').attr('src');
+		$(".photo-detail").html("<img src='"+popupsrc+"' />");
+
+	});
+{/literal}
+</script>

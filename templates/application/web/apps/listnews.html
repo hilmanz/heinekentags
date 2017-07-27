@@ -1,0 +1,54 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> News Shinkenjuku Default Dynamic Contect</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+              
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent " >
+			<div class="newspage">
+			 
+				{section name=i loop=$list}    
+					 
+						<h3>{$list[i].title}</h3>
+						<img  src="{$basedomain}public_assets/news/{$list[i].img}" height="100" width="100" style="display: inline; margin: 0px 7px 0px 0px; border: solid 1px #eee; float: left" >{$list[i].description} 
+						<a href="#" onclick="window.open('{$basedomain}news/contentview_news?id={$list[i].id_news}','mywindowtitle','width=1000,height=800,scrollbars=yes')" class="button"> <span class="icon-user4">Selengkapnya</a>
+					
+						
+						{/section}
+						
+			
+			</div>				
+						
+		
+			  
+			<div id="paging_of_news_lists" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+			
+			
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+          
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_news_lists","paging_ajax_newss",10);
+	
+</script>

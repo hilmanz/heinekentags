@@ -1,0 +1,49 @@
+rubah yang bagian ini:
+
+- tambah VHOST APACHE -
+	<VirtualHost 192.168.100.252:80>
+		ServerAdmin webmaster@dummy-host.example.com
+		DocumentRoot "C:/xampp/htdocs/socialhotspot/"
+		ServerName knspot.net
+		ErrorLog "logs/dummy-host2.example.com-error.log"
+		CustomLog "logs/dummy-host2.example.com-access.log"   common
+	</VirtualHost>
+
+	
+- HOSTS LOCAL -
+	192.168.100.252 knspot.net
+	
+	
+- DATABASE CREDENTIAL -
+	- file settings/db.php
+	$CONFIG['DATABASE'][0]['HOST'] 		= "localhost";
+	$CONFIG['DATABASE'][0]['USERNAME'] 	= "root";
+	$CONFIG['DATABASE'][0]['PASSWORD'] 	= "";
+	$CONFIG['DATABASE'][0]['DATABASE'] 	= "mikrotikfb";
+	
+- PHP FILE -
+	- file user.php
+	- INSERT INTO mikrotikfb.`tbl_user_login` 							=> ini database nya sama table nya
+	- ($API->connect('192.168.100.244', 'apiuser', '11111')) 			=> IP server Mikrotik 
+
+- file-file html yang di rubah -
+	- index.html
+	- like.html
+	- success.html
+	
+	
+- APPID -
+	appId: '741754085837151'   						=>  appID dari facebook apps 
+
+	
+- LIKES PAGES -
+	'/me/likes/235957854769'						=> 	pages id misal heineken[7174672354] ato kanadigital [235957854769]
+	nb: 
+	http://www.facebook.com/photo.php?fbid=10151207548124770&set=a.10150167897519770.304590.235957854769&type=1&source=11
+	http://www.facebook.com/photo.php?fbid=10153277475232355&set=a.439782247354.237545.7174672354&type=1&source=11
+
+	
+- LOCAL DOMAIN HOTSPOT -
+	<iframe src="http://knspot.net/user.php? 		=> domain nya di rubah
+	
+	

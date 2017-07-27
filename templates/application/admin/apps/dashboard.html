@@ -1,0 +1,92 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Heineken #TakeMeToDreamIsland Campaign Monitor</h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+            </div><!-- end .summary -->
+
+        
+            <div id="new-project" class="boxcontent">
+	 <div class="newspage">
+			         <div class="newspage">
+			  {if $list}
+				{section name=i start=1  loop=$list} 
+					{if $list[i].n_status == 0}				
+					<table width="100%">
+					<td width='5%'> {$smarty.section.i.index}</td>
+					<td width='20%'>
+						
+						<img  src="{$list[i].profile_picture}" height="100" width="100" style="display: inline; margin: 0px 7px 0px 0px; border: solid 1px #eee; float: left" ></td>
+						
+						<td width='40%'>{$list[i].username}<br>{$list[i].posts} </td>
+						<td width='10%'>{$list[i].referance}</td>
+						<td width='5%'> {$list[i].date}</td>
+						<td width='10%'>
+						<a href="{if $list[i].link} {$list[i].link}  {else} {$list[i].link_video} {/if}" target="_blank"> Link </a>
+
+					
+						{*} <form class='FormInput' method='POST'>
+						<input type="submit" name="active" id="status" value="active" class="button icon-user4" >
+						<input type="hidden" value="{$list[i].id}" name="idnya" id="idnya">
+						<input type="hidden" value="active" name="status" id="active">
+						</form>{/*}
+					{/if}
+						
+						
+						
+						</td> 
+						
+					</table>	
+						{/section}
+				{/if}		</div><br><br><br><br>
+            </div><!-- end #wizard -->
+            
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+{literal}
+	 <script type="text/javascript">
+	 function func1() {
+			$('.activec').addClass('hide');
+			$('.inactivec').addClass('hide');
+		}
+	window.onload=func1;
+	</script>
+	
+	<script type="text/javascript">
+		 
+		$().ready(function(){
+			$('.FormInput').submit(function(e){
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'home/status',
+							'data': $(this).serialize(),
+							'dataType':'json',
+							'success': function(result){
+							
+						
+						if(result.status == '1' )
+								{
+									location.reload();
+								}else if (result.status == '2')
+								{
+									location.reload();
+								}
+							
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	{/literal}
+	</script>

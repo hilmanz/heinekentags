@@ -1,0 +1,36 @@
+{literal}
+<style>
+#selectfid{width:170px}
+#selectfidbrand{width:170px}
+#selectfidarea{width:170px}
+#selectfidpl{width:170px}
+#selectfidba{width:170px}
+</style>
+{/literal}
+<div class="row">
+    <div class="panel-primary">
+      <div id="do-register" class="panel-body">
+      		<div class="tittle-register">
+      		<h2>Add New project</h2>
+            </div>
+      		
+<form method="POST" action="" enctype="multipart/form-data" class="former" id="project" > 
+				<div class="formRegister2"> 
+					<div class="rows2">
+						<label>Project Name</label><input class="inputRegister" type="text" name="brand"  value="{$selectupdatebrand.brandname}" />
+					</div>
+						<div class="rows2">
+						<label>Project Code Name</label><input class="inputRegister" type="text" name="code" value="{$selectupdatebrand.codename}" />
+					</div>
+                </div> <!-- /.formRegister2 -->
+				<div style="padding:10px;border-collapse:collapse;"></div>
+				<div class="rows2">
+					<input class="button registerrows fl reg-button" name="submit" type="submit" value="Edit">
+					<input type="hidden" name="editit" value="ok" />				 
+					 <a class="button reg-button fr" href="{$basedomain}project">Cancel</a>
+				</div>
+				  
+				</form>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel-primary -->
+</div><!-- /.row --> 

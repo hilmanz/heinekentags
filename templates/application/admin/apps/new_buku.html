@@ -1,0 +1,85 @@
+{literal}
+	<script>
+	tinymce.init({selector:'textarea',
+
+    toolbar1: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+    toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | anchor | forecolor backcolor",
+
+
+	theme : "modern",
+
+    height: "100",
+    width:900
+	
+	});
+	</script>
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Add New Book</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+                <p>Shinkenjuku Management System helps you to overview all your book. Add your new news to start. </p>
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post"  action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>Book Name</h3>
+                    <p>Fill in the details below to submit your new project.</p>
+                    <div class="row">
+                        <label for="title">Title<br></label>
+                        <input id="title" name="title" type="text" class="required" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+					<div class="row">
+                        <label for="uname">Type</label>
+						<select name='type'>
+						<option value='1'>Buku</option>
+						<option value='2'>Manga</option>
+						</select>
+                      
+						<small class="msg_name" style="color: red;">{$status.msgn}</small>
+                    </div><!-- end .row -->
+                    <div class="row">
+                        <label for="uname">Caption</label>
+                        <input id="description" name="caption" type="text" class="required">
+						<small class="msg_name" style="color: red;">{$status.msgn}</small>
+                    </div><!-- end .row -->
+                   
+                    <div class="row">
+                        <label for="content">Halaman</label>
+						<div class="required">
+						<div class="row">
+							<span> Halaman 1 </span><input id="photo" name="photo[]" type="file" class="required"><br>
+						</div>
+						<div class="row">
+							<span> Halaman 2 </span><input id="photo" name="photo[]" type="file" class="required"><br>
+						</div>
+						<div class="row">
+							<span> Halaman 3 </span><input id="photo" name="photo[]" type="file" class="required"><br>
+						</div>
+						<div class="row">
+							<span> Halaman 4 </span><input id="photo" name="photo[]" type="file" class="required"><br>
+						</div>
+						<div class="row">
+							<span> Halaman 5 </span><input id="photo" name="photo[]" type="file" class="required"><br>
+						</div>
+						
+						 </div>
+                   		
+					</div><!-- end .row -->
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+						 <a href="{$basedomain}users" class="button4">CANCEL</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

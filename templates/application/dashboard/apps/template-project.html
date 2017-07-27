@@ -1,0 +1,481 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-paint-format">&nbsp;</span> Design Your Application</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+            	<p>Design your application that matches your brand. <br />
+Find out more of what you can personalize here to suit your brand personality.</p>
+            </div><!-- end .summary -->
+			<form id="forms" class="forms" method="post" enctype="multipart/form-data" action="{$basedomain}projects/save_design?id={$id}">
+            <div id="design-template">
+            	<div id="tabs">
+                      <ul>
+                        <li><a href="#tabs-1">Home Screen</a></li>
+                        <li><a href="#tabs-2">Data Form</a></li>
+                        <li><a href="#tabs-3">Thanks You Screen</a></li>
+                        <li><a href="#tabs-4">Report Screen</a></li>
+                      </ul>
+                      <div id="tabs-1">
+                        <div class="row">
+                            <label for="">Home Background <small>2048x1536 Pixels</small></label>
+                            <input name="home_bg" type="file" class="fileinput bg" value="{$data.home.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Text Label Menu Color</label>
+                            <input id="tlmc" name="text-label-menu-color" type="text" class="colorpicker" data-tlmc="tlmc" value="{$data.text_label_menu_color.values}" style="border-color:{$data.text_label_menu_color.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Text Button Size</label>
+                            <input id="ts" name="text-size" type="text" class="num" value="{$data.text_size.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Menu Button</label>
+                            <input name="button-menu" type="file" class="fileinput bg" value="{$data.button_menu.values}">
+                        </div><!-- end .row -->
+                        
+                      </div>
+                      <div id="tabs-2">
+                        <div class="row">
+                            <label for="">Main Background <small>2048x1536 Pixel</small></label>
+                            <input name="main_bg" type="file" class="fileinput bg" value="{$data.global.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Textbox Text Size</label>
+                            <input id="tts" name="textbox-text-size" class="num" type="text" value="{$data.textbox_text_size.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Label Text Size</label>
+                            <input id="lts" name="label-text-size" class="num" type="text" value="{$data.label_text_size.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Form Cell Text Color</label>
+                            <input id="fctc" data-fctc="fctc" name="form-cell-text-color" type="text" class="colorpicker" value="{$data.form_cell_text_color.values}" style="border-color:{$data.form_cell_text_color.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Form Cell Bg</label>
+                            <input id="fcb" data-fcb="fcb" name="form-cell-background" type="text" class="colorpicker" value="{$data.form_cell_background.values}" style="border-color:{$data.form_cell_background.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Form Cell Bg Disable</label>
+                            <input id="fcbd" data-fcbd="fcbd" name="form-cell-background-disable" type="text" class="colorpicker" value="{$data.form_cell_background_disable.values}" style="border-color:{$data.form_cell_background_disable.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Text Label Color</label>
+                            <input id="tlc" data-tlc="tlc" name="text-label-color" type="text" class="colorpicker" value="{$data.text_label_color.values}" style="border-color:{$data.text_label_color.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Submit Button</label>
+                            <input name="button-submit" type="file" class="fileinput bg" value="{$data.button_submit.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Submit Button Disable</label>
+                            <input name="button-submit-disable" type="file" class="fileinput bg" value="{$data.button_submit_disable.values}">
+                        </div><!-- end .row -->
+                      </div>
+                      <div id="tabs-3">
+                        <div class="row">
+                            <label for="">Text Thanks Color</label>
+                            <input id="ttcv" data-ttcv="ttcv" name="text-thanks-color" type="text" class="colorpicker" value="{$data.text_thanks_color.values}" style="border-color:{$data.text_thanks_color.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Subtitle Text Thanks Size</label>
+                            <input id="stts" name="subtitle-text-thanks-size" class="num" type="text" value="{$data.subtitle_text_thanks_size.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Title Text Thanks Size</label>
+                            <input id="ttts" name="title-text-thanks-size" class="num" type="text" value="{$data.title_text_thanks_size.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Thankyou New Registrant Offline Title</label>
+                            <input id="tnrofft" name="thankyou-new-registrant-offline-title" type="text" value="{$data.thankyou_new_registrant_offline_title.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Thankyou New Registrant Online Title</label>
+                            <input id="tnront" name="thankyou-new-registrant-online-title" type="text" value="{$data.thankyou_new_registrant_online_title.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Thankyou New Registrant Offline</label>
+                            <input id="tnroff" name="thankyou-new-registrant-offline" type="text" value="{$data.thankyou_new_registrant_offline.values}">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Thankyou New Registrant Online</label>
+                            <input id="tnron" name="thankyou-new-registrant-online" type="text" value="{$data.thankyou_new_registrant_online.values}">
+                        </div><!-- end .row -->
+                        
+                      </div>
+                      <div id="tabs-4">
+                        <div class="row">
+                            <label for="">Text Menu Report Color</label>
+                            <input id="tmrc" data-tmrc="tmrc" name="text-menu-report-color" type="text" class="colorpicker" value="{$data.text_menu_report_color.values}" style="border-color:{$data.text_menu_report_color.values};">
+                        </div><!-- end .row -->
+                        <div class="row">
+                            <label for="">Text Label Menu Background Color</label>
+                            <input id="tlmbc" data-tlmbc="tlmbc" name="text-label-menu-background-color" type="text" class="colorpicker" value="{$data.text_label_menu_background_color.values}" style="border-color:{$data.text_label_menu_background_color.values};">
+                        </div><!-- end .row -->
+                      </div>
+				</div><!-- end #tabs -->
+                <div class="row row-submit">
+                    <input type="hidden" name="brand" value="{$id}">
+
+                    <input type="submit" class="button3" value="SAVE CHANGES">
+                    
+                </div><!-- end .row -->
+            </div><!-- end #design-template -->
+			
+            </form>
+            <div id="ipaddemo">
+                <img src="{$basedomain}assets/images/ipad_mini_black.png" />
+                <div id="background">
+                    <img class="bg_home" src="{$app_assets}content/home/{$data.home.values}"/>
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+                </div>
+                
+                <div id="reg-tab" style="display:none;top:85px" class="content-preview">
+                    <div class="row">
+                        <label class="lts_small tlc">Full Name</label>
+                        <input type="text" name="dummy" value="Full Name" class="tts_small fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <label class="lts_small tlc">Email</label>
+                        <input type="text" name="dummy" value="Email" class="tts_small fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <label class="lts_small tlc">Mobile Phone</label>
+                        <input type="text" name="dummy" value="Mobile Phone" class="tts_small fctc fcb fcbd">
+                    </div>
+                   
+                    <div class="row">
+                         <button class="btn_inside_disable" style="background-image:url('{$app_assets}content/button-submit-disable/{$data.button_submit_disable.values}')">UPDATE</button>
+                        <button class="btn_inside" style="background-image:url('{$app_assets}content/button-submit/{$data.button_submit.values}');float:right;">NEXT</button>
+                    </div>
+                </div>
+                <div id="msg-tab" style="display:none;" class="content-preview">
+                    <div class="row">
+                        <h1 class="ttts_small ttcv tnrofft tnront">{$data.thankyou_new_registrant_online_title.values}</h1>
+                        <h3 class="tnroff stts_small tnron ttcv">{$data.thankyou_new_registrant_offline.values}</h3>
+                        <br>
+                         <button class="btn_inside" style="background-image:url('{$app_assets}content/button-submit/{$data.button_submit.values}')">HOME</button>
+                    </div>
+                </div>
+                <div id="report-tab" style="display:none;padding:0 60px;" class="content-preview">
+                    <div class="row">
+                        <div class="col2">
+                            <h1 class="tlmbc"> <span class="font_c txt_lbn">Registration</span></h1>
+                            <h3 class="tlmbc"><span class="font_c txt_tym size_f">Touchbase Users</span></h3>
+                        </div>
+                        <div class="col2">
+                            <div class="selecbox tmrc" style="background-image:url('{$basedomain}assets/images/bg_select.png')">Registration</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col2">
+                            <h2 class="tlc" style="margin: 0;"> <span class="tlc">REGISTRATION</span></h2>
+                        </div>
+                        <div class="col2">
+                            <h2 class="tlc" style="margin: 0;"> <span class="tlc">UN-SYNC DATA</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col2">
+                            <div class="boks" style="min-height: 75px">
+                                
+                                <h1 class="tmrc">120</h1>
+                            </div>
+                        </div>
+                        <div class="col2">
+                            <div class="boks" style="min-height: 75px">
+                                
+                                <h1 class="tmrc">65</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigator">
+                    <button class="reg_btn tlmc ts_small btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Registration</button>
+                    <button class="sync_full tlmc ts_small btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Sync</button>
+                    <button class="report_full tlmc ts_small btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Report</button>
+                    <button class="logout_full tlmc ts_small btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Logout</button>
+                    <button class="logout_full tlmc ts_small btn_back" style="display:none;background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Back</button>
+                </div>
+                    
+                <a href="#ipaddemo_full" class="button3 showPopup fullPreview">VIEW FULL PREVIEW</a>
+            </div>
+			<div class="popup">
+            <div id="ipaddemo_full">
+                <img src="{$basedomain}assets/images/ipad_mini_black.png" />
+                <div id="background">
+                    
+                    <img class="bg_home" src="{$app_assets}content/home/{$data.home.values}"/>
+                    <img class="bg_main" style="display:none;" src="{$app_assets}content/global/{$data.global.values}"/>
+                </div>
+                <div id="reg-tab" style="display:none;" class="content-preview">
+                    <div class="row">
+                        <label class="lts tlc">Full Name</label>
+                        <input type="text" name="dummy" value="Full Name" class="tts fctc fcb fcbd" >
+                    </div>
+                    <div class="row">
+                        <label class="lts tlc">Email</label>
+                        <input type="text" name="dummy" value="Email" class="tts fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <label class="lts tlc">Mobile Phone</label>
+                        <input type="text" name="dummy" value="Mobile Phone" class="tts fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <label class="lts tlc">Social Network</label>
+                    </div>
+                    <div class="row">
+                        <label class="lts tlc">Facebook</label>
+                        <input type="text" name="dummy" value="Facebook ID" class="tts fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <label class="lts tlc">Twitter</label>
+                        <input type="text" name="dummy" value="@Twitter" class="tts fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <label class="lts tlc">Instagram</label>
+                        <input type="text" name="dummy" value="@Instagram" class="tts fctc fcb fcbd">
+                    </div>
+                    <div class="row">
+                        <button class="btn_inside_disable" style="background-image:url('{$app_assets}content/button-submit-disable/{$data.button_submit_disable.values}')">UPDATE</button>
+                        <button class="btn_inside" style="background-image:url('{$app_assets}content/button-submit/{$data.button_submit.values}')">NEXT</button>
+                    </div>
+                </div>
+                <div id="msg-tab" style="display:none;" class="content-preview">
+                    <div class="row">
+                       <h1 class=" ttts ttcv">{$data.thankyou_new_registrant_online_title.values}</h1>
+                        <h3 class="tnroff tnron stts ttcv">{$data.thankyou_new_registrant_offline.values}</h3>
+                        <br>
+                         <button class="btn_inside" style="background-image:url('{$app_assets}content/button-submit/{$data.button_submit.values}')">HOME</button>
+                    </div>
+                </div>
+                <div id="report-tab" style="display:none;top:90px;" class="content-preview">
+                    <div class="row">
+                    	<div class="col2">
+                        	<h1 class="tlmbc"> <span class="tlmbc">Registration</span></h1>
+                        	<h3 class="tlmbc"><span class="tlmbc">Touchbase Users</span></h3>
+                        </div>
+                    	<div class="col2">
+                       		<div class="selecbox tmrc" style="background-image:url('{$basedomain}assets/images/bg_select.png')">Registration</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col2">
+                        	<h2 class="tlc"> <span class="tlc">REGISTRATION</span></h2>
+                        </div>
+                    	<div class="col2">
+                        	<h2 class="tlc"> <span class="tlc">UN-SYNC DATA</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col2">
+                        	<div class="boks">
+                            	
+                                <h1 class="tmrc">120</h1>
+                            </div>
+                        </div>
+                    	<div class="col2">
+                        	<div class="boks">
+                            	
+                                <h1 class="tmrc">65</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigator">
+                    <button class="reg_full tlmc ts btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Registration</button>
+                    <button class="sync_full tlmc ts btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Sync</button>
+                    <button class="report_full tlmc ts btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Report</button>
+                    <button class="logout_full tlmc ts btn_bg" style="background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Logout</button>
+                    <button class="logout_full tlmc ts btn_back" style="display:none;background-image:url('{$app_assets}content/button-menu/{$data.button_menu.values}')">Back</button>
+                </div>
+                
+            </div>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script>
+    
+    var tlmc='{$data.text_label_menu_color.values}';
+    var ts={$data.text_size.values};
+    var tts={$data.textbox_text_size.values};
+    var lts={$data.label_text_size.values};
+    var fctc='{$data.form_cell_text_color.values}';
+    var fcb='{$data.form_cell_background.values}';
+    var fcbd='{$data.form_cell_background_disable.values}';
+    var tlc='{$data.text_label_color.values}';
+    var ttcv='{$data.text_thanks_color.values}';
+    var stts={$data.subtitle_text_thanks_size.values};
+    var ttts={$data.title_text_thanks_size.values};
+    var tmrc='{$data.text_menu_report_color.values}';
+    var tlmbc='{$data.text_label_menu_background_color.values}';
+
+{literal}
+	function readURL(input,attr) {
+
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+                if(attr=='home_bg'){
+                    $('.bg_home').attr('src', e.target.result);                
+                }
+                if(attr=='main_bg'){
+                    $('.bg_main').attr('src', e.target.result);
+                }
+               
+                if(attr=='button-menu'){
+                    $('button.btn_bg').css('background', 'url('+e.target.result+') no-repeat');
+                    $('button.btn_back').css('background', 'url('+e.target.result+') no-repeat');
+                }
+
+                if(attr=='button-submit'){
+                    $('button.btn_inside').css('background', 'url('+e.target.result+') no-repeat');
+                }
+
+                if(attr=='button-submit-disable'){
+                    $('button.btn_inside_disable').css('background', 'url('+e.target.result+') no-repeat');
+                }
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	$(document).ready(function() { 
+        //Init
+  		$('.tlmc').css('color',tlmc); //color, font-size, background-color
+		$('.ts,.ts_small').css('font-size',ts); 
+		$('.tts,.tts_small').css('font-size',tts); 
+		$('.lts,.lts_small').css('font-size',lts); 
+		$('.fctc').css('color',fctc); 
+		$('.fcb').css('background-color',fcb); 
+		$('.fcbd').css('background-color',fcbd); 
+		$('.tlc').css('color',tlc); 
+		$('.ttcv').css('color',ttcv); 
+		$('.stts,.stts_small').css('font-size',stts);
+		$('.ttts,.ttts_small').css('font-size',ttts);
+		$('.tmrc').css('color',tmrc); 
+		$('.tlmbc').css('color',tlmbc); 
+
+        //full
+
+
+		$(".bg").change(function(){
+            var attr = $(this).attr('name')
+            readURL(this,attr);
+        });
+		
+
+        //Tab
+        $("a[href='#tabs-1']").click(function(){
+            $(".bg_home, .btn_bg").show();
+            $(".bg_main, .btn_back,#reg-tab,#msg-tab,#report-tab").hide();
+        });
+        $("a[href='#tabs-2']").click(function(){
+            $(".bg_home, .btn_bg,#msg-tab,#report-tab").hide();
+            $(".bg_main, .btn_back,#reg-tab").show();
+        });
+        $("a[href='#tabs-3']").click(function(){
+            $(".bg_home, .btn_bg,#reg-tab,#report-tab").hide();
+            $(".bg_main, .btn_back,#msg-tab").show();
+        });
+        $("a[href='#tabs-4']").click(function(){
+            $(".bg_home, .btn_bg,#reg-tab,#msg-tab").hide();
+            $(".bg_main, .btn_back,#report-tab").show();
+        });
+
+        //home
+        $("#tlmc").change(function(){
+            var c = $(this).val();
+            $(".tlmc").css('color','#'+c);
+        });
+        $('#ts').change(function(){
+            var numm = $(this).val();
+            var numm_small = numm-2;
+         $('.ts').css('font-size',numm+'px');
+         $('.ts_small').css('font-size',numm_small+'px');
+        });
+
+        //event
+        $('#tts').change(function(){
+            var numm = $(this).val();
+            var numm_small = numm-2;
+         $('.tts').css('font-size',numm+'px');
+         $('.tts_small').css('font-size',numm_small+'px');
+        });
+        $('#lts').change(function(){
+            var numm = $(this).val();
+            var numm_small = numm-2;
+         $('.lts').css('font-size',numm+'px');
+         $('.lts_small').css('font-size',numm_small+'px');
+        });
+        $("#fctc").change(function(){
+            var c = $(this).val();
+            $(".fctc").css('color','#'+c);
+        });
+        $("#fcb").change(function(){
+            var c = $(this).val();
+            $(".fcb").css('background-color','#'+c);
+        });
+
+        $("#fcbd").change(function(){
+            var c = $(this).val();
+            $(".fcbd").css('background-color','#'+c);
+        });
+        
+        $("#tlc").change(function(){
+            var c = $(this).val();
+            $(".tlc").css('color','#'+c);
+        });
+
+        $("#tlmbc").change(function(){
+            var c = $(this).val();
+            $(".tlmbc").css('color','#'+c);
+        });
+
+        $("#tmrc").change(function(){
+            var c = $(this).val();
+            $(".tmrc").css('color','#'+c);
+        });
+
+        $("#ttcv").change(function(){
+            var c = $(this).val();
+            $(".ttcv").css('color','#'+c);
+        });
+
+        //Thankyou
+        $('#tnroff').keyup(function(){
+         $('.tnroff').text($(this).val());
+        });
+
+        $('#tnrofft').keyup(function(){
+         $('.tnrofft').text($(this).val());
+        });
+        $('#tnron').keyup(function(){
+         $('.tnron').text($(this).val());
+        });
+
+        $('#tnront').keyup(function(){
+         $('.tnront').text($(this).val());
+        });
+        $('#stts').change(function(){
+            var numm = $(this).val();
+            var numm_small = numm-2;
+         $('.stts').css('font-size',numm+'px');
+         $('.stts_small').css('font-size',numm_small+'px');
+        });
+        $('#ttts').change(function(){
+            var numm = $(this).val();
+            var numm_small = numm-2;
+         $('.ttts').css('font-size',numm+'px');
+         $('.ttts_small').css('font-size',numm_small+'px');
+        });
+
+	});
+{/literal}
+</script>

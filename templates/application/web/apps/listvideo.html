@@ -1,0 +1,43 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> News Shinkenjuku Default Dynamic Contect</h2>
+            <h2 class="fr"><a href="{$basedomain}projects" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+              
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+            
+			  {if $list}
+				{section name=i loop=$list}    
+					<div class="pagilist">
+						<h3>{$list[i].title_video}</h3>
+						<img src="http://i1.ytimg.com/vi/{$list[i].id_video_youtube}/default.jpg" /><br>
+						<a href="#" onclick="window.open('{$basedomain}video/videoDetail?id={$list[i].id_video}','mywindowtitle','width=1200,height=900,scrollbars=yes')" 
+> Selengkapnya</a>
+					
+						</div><br><br>
+						{/section}
+				{/if}		
+						
+		
+			  
+			
+			
+			
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+          
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_news_list","paging_ajax_news",10);
+	
+</script>
